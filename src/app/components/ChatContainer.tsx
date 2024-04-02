@@ -1,8 +1,10 @@
 "use client";
-
-import { Box, useTheme } from "@mui/material";
+import { useContext } from "react";
+import { Box, Typography, useTheme } from "@mui/material";
+import { AppContext } from "../contexts/AppContext";
 
 export default function ChatContainer() {
+  const { activeChat, setActiveChat } = useContext(AppContext);
   const theme = useTheme();
   return (
     <Box
@@ -10,11 +12,29 @@ export default function ChatContainer() {
         width: { xs: "95%", md: "50%" },
         height: "50vh",
         margin: "1rem auto",
+        padding: "0.5rem",
         overflowY: "auto",
         backgroundColor: "background.paper",
         boxShadow: 1,
         border: `1px solid ${theme.palette.divider}`,
+        borderRadius: "5px",
       }}
-    ></Box>
+    >
+      {activeChat ? (
+        activeChat
+      ) : (
+        <article style={{ textAlign: "center" }}>
+          <Typography variant="h6" component={"h2"}>
+            Welcome to CodeAide!
+          </Typography>
+          <Typography variant="body1">
+            I am specifically designed to assist you with coding like a mentor
+            or teacher would. I&apos;ll provide you with suggestions and
+            guidance but will not create a solution to the problem you are
+            working on. Ask a question below!
+          </Typography>
+        </article>
+      )}
+    </Box>
   );
 }

@@ -7,7 +7,7 @@ export default function Nav() {
       <AppBar position="static">
         <Toolbar>
           <AccordionMenu />
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h5" component="h1" sx={{ flexGrow: 1 }}>
             CodeAide
           </Typography>
         </Toolbar>
