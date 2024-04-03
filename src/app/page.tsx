@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import Nav from "./components/Nav";
 import ChatContainer from "./components/ChatContainer";
 import { Grid } from "@mui/material";
+import ChatTextInput from "./components/ChatTextInput";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
       >
         <Grid item>
           <ChatContainer />
+        </Grid>
+        <Grid item>
+          <ChatTextInput />
         </Grid>
       </Grid>
     </main>
