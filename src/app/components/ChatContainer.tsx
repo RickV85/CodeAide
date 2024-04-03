@@ -9,9 +9,8 @@ export default function ChatContainer() {
   return (
     <Box
       sx={{
-        width: { xs: "95%", md: "50%" },
         height: "50vh",
-        margin: "1rem auto",
+        margin: "1rem",
         padding: "0.5rem",
         overflowY: "auto",
         backgroundColor: "background.paper",
