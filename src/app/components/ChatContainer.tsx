@@ -14,9 +14,8 @@ export default function ChatContainer() {
         padding: "0.5rem",
         overflowY: "auto",
         backgroundColor: "background.paper",
-        boxShadow: 1,
         border: `1px solid ${theme.palette.divider}`,
-        borderRadius: "5px",
+        borderRadius: "4px",
       }}
     >
       {activeChat ? (

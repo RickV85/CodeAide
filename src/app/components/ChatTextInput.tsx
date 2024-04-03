@@ -1,3 +1,4 @@
+"use client";
 import { TextField, Box } from "@mui/material";
 export default function ChatTextInput() {
   return (
@@ -9,10 +10,9 @@ export default function ChatTextInput() {
     >
       <TextField
         id="chatTextInput"
-        label="Your response"
         multiline
         rows={6}
-        defaultValue="Enter question here"
+        placeholder="Enter question or response here"
         variant="outlined"
         fullWidth
       />
