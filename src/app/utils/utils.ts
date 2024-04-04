@@ -1,6 +1,6 @@
 export const validateUserInput = (input: string) => {
   if (input === "") {
-    return false;
+    return "Input cannot be empty";
   }
-  return true;
+  return "valid";
 };
