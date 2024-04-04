@@ -5,7 +5,7 @@ export default function ChatTextInput() {
     <Box
       sx={{
         width: { xs: "100vw" },
-        padding: "1rem",
+        padding: "1rem"
       }}
     >
       <TextField

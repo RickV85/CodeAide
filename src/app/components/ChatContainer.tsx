@@ -26,7 +26,7 @@ export default function ChatContainer() {
             Welcome to CodeAide!
           </Typography>
           <Typography variant="body1">
-            I&apos;m specifically designed to assist you with coding like a mentor
+            I&apos;m specifically designed to assist you with coding challenges or questions like a mentor
             or teacher would. I&apos;ll provide you with suggestions and
             guidance but will not create a solution to the problem you are
             working on. Ask a question below!
