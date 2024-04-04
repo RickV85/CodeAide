@@ -4,7 +4,6 @@ export default function ChatTextInput() {
   return (
     <Box
       sx={{
-        width: { xs: "100vw" },
         padding: "1rem"
       }}
     >

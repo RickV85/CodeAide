@@ -12,13 +12,13 @@ export default function Chat() {
       alignItems="center"
       spacing={0}
     >
-      <Grid item>
+      <Grid item xs={12}>
         <ChatContainer />
       </Grid>
-      <Grid item>
+      <Grid item xs={12} sx={{ width: "100%" }}>
         <ChatTextInput />
       </Grid>
-      <Grid item>
+      <Grid item xs={12}>
         <ChatSubmitButton />
       </Grid>
     </Grid>
