@@ -3,9 +3,13 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
+  preset: "ts-jest",
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -146,7 +150,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: "jest-environment-node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
