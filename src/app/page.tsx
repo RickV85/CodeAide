@@ -4,26 +4,15 @@ import ChatContainer from "./components/ChatContainer";
 import { Grid } from "@mui/material";
 import ChatTextInput from "./components/ChatTextInput";
 import ChatSubmitButton from "./components/ChatSubmitButton";
+import Chat from "./components/Chat";
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <Nav />
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={1}
-      >
+      <Grid container>
         <Grid item>
-          <ChatContainer />
-        </Grid>
-        <Grid item>
-          <ChatTextInput />
-        </Grid>
-        <Grid item>
-          <ChatSubmitButton />
+          <Chat />
         </Grid>
       </Grid>
     </main>
