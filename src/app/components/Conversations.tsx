@@ -24,7 +24,7 @@ export default function Conversations() {
     if (updatedConversations?.length) {
       setConversations(updatedConversations);
     }
-  }, [activeChat, conversations]);
+  }, [activeChat]);
 
   const renderConversations = () => {
     const convElements = conversations.map((key: any) => {
