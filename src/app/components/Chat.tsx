@@ -28,6 +28,22 @@ export default function Chat() {
     }
   }, [activeChat, messages, setActiveChat]);
 
+  useEffect(() => {
+    const history = window.localStorage.getItem("conversations");
+    if (!history) {
+      window.localStorage.setItem("conversations", "{}");
+    }
+    if (activeChat?.length && history) {
+      const conversations = JSON.parse(history);
+      const activeId = activeChat[0]?.id;
+      conversations[activeId] = activeChat;
+      window.localStorage.setItem(
+        "conversations",
+        JSON.stringify(conversations)
+      );
+    }
+  }, [activeChat]);
+
   const validateSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);

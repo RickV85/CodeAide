@@ -33,9 +33,8 @@ export default function ChatContainer({ messages, chatError }: Props) {
         }
         return (
           <Box key={`msg-${i}`} sx={{ marginBottom: "1rem" }}>
-            <Typography>
-              {role}: {msg.content}
-            </Typography>
+            <Typography fontWeight="700">{role}</Typography>
+            <Typography>{msg.content}</Typography>
           </Box>
         );
       });
