@@ -1,14 +1,10 @@
 "use client";
 import React, { createContext, useState } from "react";
-import { MessageHistory } from "../interfaces";
+import { Message } from "ai/react";
 
 interface AppContext {
-  activeChat: MessageHistory | undefined;
-  setActiveChat: React.Dispatch<
-    React.SetStateAction<MessageHistory | undefined>
-  >;
-  userChatInput: string;
-  setUserChatInput: React.Dispatch<React.SetStateAction<string>>;
+  activeChat: Message[] | undefined;
+  setActiveChat: React.Dispatch<React.SetStateAction<Message[] | undefined>>;
   userInputError: string;
   setUserInputError: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -16,8 +12,6 @@ interface AppContext {
 export const AppContext = createContext<AppContext>({
   activeChat: undefined,
   setActiveChat: () => {},
-  userChatInput: "",
-  setUserChatInput: () => {},
   userInputError: "",
   setUserInputError: () => {},
 });
@@ -27,18 +21,15 @@ interface AppProviderProps {
 }
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [activeChat, setActiveChat] = useState<MessageHistory | undefined>({
-    messages: [],
-  });
-  const [userChatInput, setUserChatInput] = useState("");
+  const [activeChat, setActiveChat] = useState<Message[] | undefined>(
+    undefined
+  );
   const [userInputError, setUserInputError] = useState("");
   return (
     <AppContext.Provider
       value={{
         activeChat,
         setActiveChat,
-        userChatInput,
-        setUserChatInput,
         userInputError,
         setUserInputError,
       }}

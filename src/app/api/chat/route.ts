@@ -10,7 +10,8 @@ export const runtime = "edge";
 
 export async function POST(req: Request) {
   try {
-    const { messageHistory } = await req.json();
+    const { messages } = await req.json();
+    console.log(messages);
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
           content:
             "You are an assistant for software developers that will not return code to the user. You are designed to assist the user in the same way that a mentor or teacher would, giving the user helpful tips and direction, but not solving the problem or issue for them. Provide cited sources for your answers and links to the resources the information came from.",
         },
-        ...messageHistory,
+        ...messages,
       ],
       temperature: 1,
       max_tokens: 1000,

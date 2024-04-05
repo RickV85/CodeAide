@@ -2,16 +2,31 @@
 import { TextField, Box } from "@mui/material";
 import { useContext, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
+import { ChangeEvent } from "react";
 
-export default function ChatTextInput() {
-  const { userChatInput, setUserChatInput, userInputError, setUserInputError } =
+interface Props {
+  input: string;
+  handleInputChange: (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+}
+
+export default function ChatTextInput({ input, handleInputChange }: Props) {
+  const { userInputError, setUserInputError } =
     useContext(AppContext);
 
-  const handleInput = (input: string) => {
+  const handleInput = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if (userInputError) {
       setUserInputError("");
     }
-    setUserChatInput(input);
+
+    if (e.target instanceof HTMLInputElement) {
+      handleInputChange(e as ChangeEvent<HTMLInputElement>);
+    } else if (e.target instanceof HTMLTextAreaElement) {
+      handleInputChange(e as ChangeEvent<HTMLTextAreaElement>);
+    }
   };
 
   return (
@@ -22,13 +37,16 @@ export default function ChatTextInput() {
     >
       <TextField
         id="chatTextInput"
+        name="chatTextInput"
         multiline
         rows={6}
         placeholder="Enter question or response here"
         variant="outlined"
         fullWidth
-        value={userChatInput}
-        onChange={(e) => handleInput(e.target.value)}
+        value={input}
+        onChange={(e) => {
+          handleInput(e);
+        }}
         error={userInputError ? true : false}
         label={userInputError ? userInputError : null}
       />
