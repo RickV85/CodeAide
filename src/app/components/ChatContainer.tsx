@@ -1,18 +1,25 @@
 "use client";
 import { Box, Typography, useTheme, Divider } from "@mui/material";
 import { Message } from "ai/react";
+import { useEffect } from "react";
 
 interface Props {
   messages: Message[];
+  chatError: Error | undefined;
 }
 
-export default function ChatContainer({ messages }: Props) {
+export default function ChatContainer({ messages, chatError }: Props) {
   const theme = useTheme();
+
+  useEffect(() => {
+    if (chatError) {
+      console.error(chatError);
+    }
+  }, [chatError]);
 
   const renderActiveChat = () => {
     if (messages.length) {
       const chatDisplay = messages.map((msg, i) => {
-        console.log(msg);
         return (
           <Box key={`msg-${i}`} sx={{ marginBottom: "1rem" }}>
             <Typography>{msg.content}</Typography>
@@ -40,21 +47,22 @@ export default function ChatContainer({ messages }: Props) {
           {messages.length ? "CodeAide Conversation" : "Welcome to CodeAide!"}
         </Typography>
         <Divider variant="middle" />
-        <Box marginTop="1rem">
-          {messages.length ? (
-            renderActiveChat()
-          ) : (
-            <Typography
-              variant="body1"
-              textAlign="center"
-            >
-              {`I'm specifically designed to assist you with coding challenges or
+        {chatError ? (
+          <Typography marginTop="1rem">An error occurred, please reload the page. Error: {chatError.message}</Typography>
+        ) : (
+          <Box marginTop="1rem">
+            {messages.length ? (
+              renderActiveChat()
+            ) : (
+              <Typography variant="body1" textAlign="center">
+                {`I'm specifically designed to assist you with coding challenges or
             questions like a mentor or teacher would. I'll provide you with
             suggestions and guidance, but will not create a solution to the
             problem you are working on. Ask a question below!`}
-            </Typography>
-          )}
-        </Box>
+              </Typography>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

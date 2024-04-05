@@ -11,8 +11,14 @@ import { FormEvent } from "react";
 import ChatResetButton from "./ChatResetButton";
 
 export default function Chat() {
-  const { messages, setMessages, input, handleInputChange, handleSubmit } =
-    useChat();
+  const {
+    messages,
+    setMessages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    error,
+  } = useChat();
   const { activeChat, setActiveChat, setUserInputError } =
     useContext(AppContext);
 
@@ -46,7 +52,7 @@ export default function Chat() {
       spacing={0}
     >
       <Grid item xs={12} sx={{ width: "100%" }}>
-        <ChatContainer messages={messages} />
+        <ChatContainer messages={messages} chatError={error} />
       </Grid>
       <Grid item xs={12} sx={{ width: "100%" }}>
         <form onSubmit={(e) => validateSubmit(e)}>
