@@ -8,14 +8,13 @@ import { useChat } from "ai/react";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { FormEvent } from "react";
+import ChatResetButton from "./ChatResetButton";
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
-  const {
-    activeChat,
-    setActiveChat,
-    setUserInputError,
-  } = useContext(AppContext);
+  const { messages, setMessages, input, handleInputChange, handleSubmit } =
+    useChat();
+  const { activeChat, setActiveChat, setUserInputError } =
+    useContext(AppContext);
 
   useEffect(() => {
     if (activeChat !== messages) {
@@ -64,8 +63,11 @@ export default function Chat() {
                 handleInputChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} marginBottom="1rem">
               <ChatSubmitButton />
+            </Grid>
+            <Grid item xs={12}>
+              <ChatResetButton setMessages={setMessages} />
             </Grid>
           </Grid>
         </form>

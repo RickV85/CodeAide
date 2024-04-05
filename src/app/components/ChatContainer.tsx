@@ -12,6 +12,7 @@ export default function ChatContainer({ messages }: Props) {
   const renderActiveChat = () => {
     if (messages.length) {
       const chatDisplay = messages.map((msg, i) => {
+        console.log(msg);
         return (
           <Box key={`msg-${i}`} sx={{ marginBottom: "1rem" }}>
             <Typography>{msg.content}</Typography>
@@ -39,18 +40,21 @@ export default function ChatContainer({ messages }: Props) {
           {messages.length ? "CodeAide Conversation" : "Welcome to CodeAide!"}
         </Typography>
         <Divider variant="middle" />
-        <Typography
-          variant="body1"
-          marginTop="1rem"
-          textAlign={messages.length ? "left" : "center"}
-        >
-          {messages.length
-            ? renderActiveChat()
-            : `I'm specifically designed to assist you with coding challenges
-            or questions like a mentor or teacher would. I'll provide you
-            with suggestions and guidance, but will not create a solution to the
+        <Box marginTop="1rem">
+          {messages.length ? (
+            renderActiveChat()
+          ) : (
+            <Typography
+              variant="body1"
+              textAlign="center"
+            >
+              {`I'm specifically designed to assist you with coding challenges or
+            questions like a mentor or teacher would. I'll provide you with
+            suggestions and guidance, but will not create a solution to the
             problem you are working on. Ask a question below!`}
-        </Typography>
+            </Typography>
+          )}
+        </Box>
       </Box>
     </Box>
   );
