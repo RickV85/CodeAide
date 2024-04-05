@@ -20,9 +20,22 @@ export default function ChatContainer({ messages, chatError }: Props) {
   const renderActiveChat = () => {
     if (messages.length) {
       const chatDisplay = messages.map((msg, i) => {
+        let role;
+        switch (msg.role) {
+          case "user":
+            role = "You";
+            break;
+          case "assistant":
+            role = "CodeAide";
+            break;
+          default:
+            role = "";
+        }
         return (
           <Box key={`msg-${i}`} sx={{ marginBottom: "1rem" }}>
-            <Typography>{msg.content}</Typography>
+            <Typography>
+              {role}: {msg.content}
+            </Typography>
           </Box>
         );
       });
@@ -48,7 +61,10 @@ export default function ChatContainer({ messages, chatError }: Props) {
         </Typography>
         <Divider variant="middle" />
         {chatError ? (
-          <Typography marginTop="1rem">An error occurred, please reload the page. Error: {chatError.message}</Typography>
+          <Typography marginTop="1rem">
+            An error occurred, please reload the page. Error:{" "}
+            {chatError.message}
+          </Typography>
         ) : (
           <Box marginTop="1rem">
             {messages.length ? (
