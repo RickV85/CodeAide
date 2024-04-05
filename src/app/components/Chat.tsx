@@ -12,7 +12,7 @@ export default function Chat() {
       alignItems="center"
       spacing={0}
     >
-      <Grid item xs={12}>
+      <Grid item xs={12} sx={{ width: "100%" }}>
         <ChatContainer />
       </Grid>
       <Grid item xs={12} sx={{ width: "100%" }}>

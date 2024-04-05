@@ -1,6 +1,6 @@
-import { messageHistory } from "../interfaces";
+import { MessageHistory } from "../interfaces";
 
-export async function openAiChatPost(messageHistory: messageHistory) {
+export async function openAiChatPost(messageHistory: MessageHistory) {
   try {
     const response = await fetch("/api/openai", {
       method: "POST",
