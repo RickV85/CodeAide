@@ -12,4 +12,10 @@ describe("Conversation", () => {
   test("it should create instance of Conversation", () => {
     expect(convo).toBeInstanceOf(Conversation);
   });
+
+  test("its messages should be instances of Message", () => {
+    convo.messages.forEach((msg: any) => {
+      expect(msg).toBeInstanceOf(Message);
+    });
+  });
 });
