@@ -62,8 +62,6 @@ describe("Conversation", () => {
 
   // method tests
 
-  // test("it should have a method to initialize and sort Messages by date", () => {});
-
   test("it should have a method to format date for display", () => {
     const formattedDate = convo.formatCreatedDate();
     expect(formattedDate).toBe("4/6/24");
