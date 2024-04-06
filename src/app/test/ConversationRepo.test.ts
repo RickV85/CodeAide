@@ -20,8 +20,8 @@ describe("ConversationRepo", () => {
   });
 
   test("it should sort conversations from newest to oldest", () => {
-    const firstDate = convRepo.conversations[0].createdAt;
-    const lastDate = convRepo.conversations[3].createdAt;
+    const firstDate = convRepo.conversations[0].date;
+    const lastDate = convRepo.conversations[3].date;
     expect(firstDate > lastDate).toBe(true);
   });
 });

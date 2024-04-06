@@ -18,6 +18,14 @@ export class ConversationRepo {
   initializeConversations(data: ChatHistory) {
     const convKeys = Object.keys(data);
     const conversations = convKeys.map((key) => new Conversation(data[key]));
+    conversations.sort((a, b) => {
+      if (a.date! > b.date!) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
     return conversations;
   }
 }
