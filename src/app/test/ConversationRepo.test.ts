@@ -40,8 +40,8 @@ describe("ConversationRepo", () => {
   });
 
   test("it should have a method to remove a conversation by id", () => {
-    const newRepo = convRepo.removeConvById("T4NKgvK");
-    const newRepoIds = newRepo.conversations.map(
+    convRepo.removeConvById("T4NKgvK");
+    const newRepoIds = convRepo.conversations.map(
       (conv: Conversation) => conv.id
     );
 

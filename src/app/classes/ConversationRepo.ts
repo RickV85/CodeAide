@@ -37,4 +37,11 @@ export class ConversationRepo {
       return null;
     }
   }
+
+  removeConvById(id: string) {
+    const foundIndex = this.conversations.findIndex((conv) => conv.id === id);
+    if (foundIndex) {
+      this.conversations.splice(foundIndex, 1);
+    }
+  }
 }
