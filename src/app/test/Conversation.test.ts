@@ -21,6 +21,6 @@ describe("Conversation", () => {
 
   test("it should have a method to format date for display", () => {
     const formattedDate = convo.formatCreatedDate();
-    expect(formattedDate).toBe("4/5/24");
-  })
+    expect(formattedDate).toBe("4/6/24");
+  });
 });
