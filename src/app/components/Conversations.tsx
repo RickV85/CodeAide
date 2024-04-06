@@ -2,39 +2,47 @@
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
+import { ConversationRepo } from "../classes/ConversationRepo";
+import { Conversation } from "../classes/Conversation";
 
 export default function Conversations() {
   const { activeChat } = useContext(AppContext);
-  const [conversations, setConversations] = useState<any>([]);
+  const [conversationRepo, setConversationRepo] = useState<ConversationRepo>();
   const theme = useTheme();
 
   const getHistory = () => {
     const history = window.localStorage.getItem("conversations");
     if (history) {
       const parsedHist = JSON.parse(history);
-      const convKeys = Object.keys(parsedHist);
-      if (convKeys.length) {
-        return convKeys;
-      }
+      const conversationRepo = new ConversationRepo(parsedHist);
+      return conversationRepo;
     }
   };
 
   useEffect(() => {
     const updatedConversations = getHistory();
-    if (updatedConversations?.length) {
-      setConversations(updatedConversations);
+    if (updatedConversations) {
+      setConversationRepo(updatedConversations);
     }
   }, [activeChat]);
 
   const renderConversations = () => {
-    const convElements = conversations.map((key: any) => {
+    if (conversationRepo?.conversations.length) {
+      const convElements = conversationRepo?.conversations.map((conv: Conversation) => {
+        return (
+          <Box key={`conv-${conv.id}`}>
+            <Typography>{conv.messages[0].content}</Typography>
+          </Box>
+        );
+      });
+      return convElements;
+    } else {
       return (
-        <Box key={`conv-${key}`}>
-          <Typography>{key}</Typography>
+        <Box>
+          <Typography>No conversations to display</Typography>
         </Box>
       );
-    });
-    return convElements;
+    }
   };
 
   return (
