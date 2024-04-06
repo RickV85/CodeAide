@@ -3,9 +3,14 @@ export class Message {
   createdAt: Date;
   id: string;
   role: string;
-  constructor(object: Message) {
+  constructor(object: {
+    content: string;
+    createdAt: string;
+    id: string;
+    role: string;
+  }) {
     this.content = object.content;
-    this.createdAt = object.createdAt;
+    this.createdAt = new Date(object.createdAt);
     this.id = object.id;
     this.role = object.role;
   }
