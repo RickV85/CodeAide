@@ -44,4 +44,8 @@ export class ConversationRepo {
       this.conversations.splice(foundIndex, 1);
     }
   }
+
+  createDataForStorage() {
+    return null;
+  }
 }

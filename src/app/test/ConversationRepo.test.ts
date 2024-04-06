@@ -47,4 +47,10 @@ describe("ConversationRepo", () => {
 
     expect(newRepoIds.includes("T4NKgvK")).toBe(false);
   });
+
+  test("it should have a method for creating storage data", () => {
+    const storageData = convRepo.createDataForStorage();
+
+    expect(storageData).toEqual(convHistory);
+  })
 });
