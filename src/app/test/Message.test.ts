@@ -12,6 +12,8 @@ describe("Message", () => {
     });
   });
 
+  // constructor tests
+
   test("it should create a Message instance", () => {
     expect(message).toBeInstanceOf(Message);
   });
