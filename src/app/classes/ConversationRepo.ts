@@ -1,6 +1,6 @@
 import { Conversation } from "./Conversation";
 
-interface ConvHistory {
+interface ChatHistory {
   [id: string]: {
     content: string;
     role: string;
@@ -11,11 +11,11 @@ interface ConvHistory {
 
 export class ConversationRepo {
   conversations: Conversation[];
-  constructor(data: ConvHistory) {
+  constructor(data: ChatHistory) {
     this.conversations = this.initializeConversations(data);
   }
 
-  initializeConversations(data: ConvHistory) {
+  initializeConversations(data: ChatHistory) {
     const convKeys = Object.keys(data);
     const conversations = convKeys.map((key) => new Conversation(data[key]));
     return conversations;
