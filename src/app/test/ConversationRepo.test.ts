@@ -18,4 +18,10 @@ describe("ConversationRepo", () => {
       expect(conv).toBeInstanceOf(Conversation);
     });
   });
+
+  test("it should sort conversations from newest to oldest", () => {
+    const firstDate = convRepo.conversations[0].createdAt;
+    const lastDate = convRepo.conversations[3].createdAt;
+    expect(firstDate > lastDate).toBe(true);
+  });
 });
