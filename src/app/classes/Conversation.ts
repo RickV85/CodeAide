@@ -52,4 +52,9 @@ export class Conversation {
       return null;
     }
   }
+
+  createIntro() {
+    const introString = this.messages[0].content.slice(0, 50);
+    return introString + "...";
+  }
 }
