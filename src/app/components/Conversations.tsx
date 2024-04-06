@@ -6,7 +6,7 @@ import { ConversationRepo } from "../classes/ConversationRepo";
 import { Conversation } from "../classes/Conversation";
 
 export default function Conversations() {
-  const { activeChat, setActiveChat } = useContext(AppContext);
+  const { activeChat, setActiveChat, setMessages } = useContext(AppContext);
   const [conversationRepo, setConversationRepo] = useState<ConversationRepo>();
   const theme = useTheme();
 
@@ -30,10 +30,11 @@ export default function Conversations() {
     if (id && conversationRepo) {
       const foundConv = conversationRepo.findConvById(id);
       if (foundConv) {
-        setActiveChat(foundConv.messages)
+        setActiveChat(foundConv.messages);
+        setMessages(foundConv.messages);
       }
     }
-  }
+  };
 
   const renderConversations = () => {
     if (conversationRepo?.conversations.length) {

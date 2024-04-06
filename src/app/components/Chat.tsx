@@ -12,15 +12,16 @@ import ChatResetButton from "./ChatResetButton";
 
 export default function Chat() {
   const {
+    activeChat,
+    setActiveChat,
+    setUserInputError,
     messages,
     setMessages,
     input,
     handleInputChange,
     handleSubmit,
     error,
-  } = useChat();
-  const { activeChat, setActiveChat, setUserInputError } =
-    useContext(AppContext);
+  } = useContext(AppContext);
   const chatSubmitBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
