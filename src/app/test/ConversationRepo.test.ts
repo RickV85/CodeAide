@@ -24,4 +24,11 @@ describe("ConversationRepo", () => {
     const lastDate = convRepo.conversations[3].date;
     expect(firstDate > lastDate).toBe(true);
   });
+
+  // methods
+
+  test("it should have a method to find and return a conversation by id", () => {
+    const foundConv = convRepo.findConvById("T4NKgvK");
+    expect(foundConv).toEqual(convRepo.conversations[2]);
+  });
 });

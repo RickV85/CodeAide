@@ -26,6 +26,10 @@ export default function Conversations() {
     }
   }, [activeChat]);
 
+  // const makeConvActive = (id: string) => {
+    
+  // }
+
   const renderConversations = () => {
     if (conversationRepo?.conversations.length) {
       const convElements = conversationRepo?.conversations.map(
@@ -34,6 +38,7 @@ export default function Conversations() {
             <Box
               key={`conv-${conv.id}`}
               marginTop="1rem"
+              // onClick={() => makeConvActive(conv.id)}
               sx={{
                 border: `1px solid ${theme.palette.primary.light}`,
                 borderRadius: "4px",
