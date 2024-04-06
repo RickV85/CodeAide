@@ -1,13 +1,16 @@
 "use client";
-import React, { createContext, useState } from "react";
+import React, { SetStateAction, createContext, useState } from "react";
 import { Message, useChat } from "ai/react";
 import { ChatRequestOptions } from "ai";
+import { ConversationRepo } from "../classes/ConversationRepo";
 
 interface AppContext {
   activeChat: Message[] | undefined;
   setActiveChat: React.Dispatch<React.SetStateAction<Message[] | undefined>>;
   userInputError: string;
   setUserInputError: React.Dispatch<React.SetStateAction<string>>;
+  conversationRepo: ConversationRepo | undefined,
+  setConversationRepo: React.Dispatch<SetStateAction<ConversationRepo | undefined>>,
   // OpenAI useChat
   messages: Message[];
   setMessages: (messages: Message[]) => void;
@@ -22,6 +25,8 @@ export const AppContext = createContext<AppContext>({
   setActiveChat: () => {},
   userInputError: "",
   setUserInputError: () => {},
+  conversationRepo: undefined,
+  setConversationRepo: () => {},
   // OpenAI useChat
   messages: [],
   setMessages: () => {},
@@ -40,6 +45,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     undefined
   );
   const [userInputError, setUserInputError] = useState("");
+  const [conversationRepo, setConversationRepo] = useState<ConversationRepo | undefined>();
   // OpenAI useChat
   const {
     messages,
@@ -57,6 +63,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setActiveChat,
         userInputError,
         setUserInputError,
+        conversationRepo,
+        setConversationRepo,
         // OpenAI useChat
         messages,
         setMessages,

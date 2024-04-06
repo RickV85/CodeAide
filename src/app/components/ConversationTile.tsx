@@ -9,8 +9,9 @@ interface Props {
   conversation: Conversation;
 }
 
-export default function ConversationTile({conversation}: Props) {
-  const {setActiveChat, setMessages} = useContext(AppContext);
+export default function ConversationTile({ conversation }: Props) {
+  const { setActiveChat, setMessages, conversationRepo } =
+    useContext(AppContext);
   const theme = useTheme();
 
   const makeConvActive = (id: string | null) => {

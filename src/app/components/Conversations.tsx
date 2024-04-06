@@ -7,8 +7,8 @@ import { Conversation } from "../classes/Conversation";
 import ConversationTile from "./ConversationTile";
 
 export default function Conversations() {
-  const { activeChat, setActiveChat, setMessages } = useContext(AppContext);
-  const [conversationRepo, setConversationRepo] = useState<ConversationRepo>();
+  const { activeChat, conversationRepo, setConversationRepo } =
+    useContext(AppContext);
   const theme = useTheme();
 
   const getHistory = () => {
@@ -25,6 +25,7 @@ export default function Conversations() {
     if (updatedConversations) {
       setConversationRepo(updatedConversations);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeChat]);
 
   const renderConversations = () => {
@@ -33,28 +34,6 @@ export default function Conversations() {
         (conv: Conversation) => {
           return (
             <ConversationTile key={`conv-${conv.id}`} conversation={conv} />
-            // <Box
-            //   key={`conv-${conv.id}`}
-            //   marginTop="1rem"
-            //   onClick={() => makeConvActive(conv.id)}
-            //   title="Make active conversation"
-            //   sx={{
-            //     border: `1px solid ${theme.palette.primary.light}`,
-            //     borderRadius: "4px",
-            //     padding: "0.25rem",
-            //     cursor: "pointer",
-            //     display: "flex",
-            //     justifyContent: "space-between",
-            //   }}
-            // >
-            //   <Typography>{conv.createIntro()}</Typography>
-            //   <Box
-            //     title="Delete conversation"
-            //     sx={{ marginLeft: "0.5rem" }}
-            //   >
-            //     <CloseIcon />
-            //   </Box>
-            // </Box>
           );
         }
       );
