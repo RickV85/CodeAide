@@ -4,9 +4,16 @@ export class Conversation {
   id: string;
   date: Date;
   messages: Message[];
-  constructor(id: string, date: string, messages: Message[]) {
-    this.id = id;
-    this.date = new Date(date);
-    this.messages = messages;
+  constructor(
+    messages: {
+      content: string;
+      role: string;
+      createdAt: string;
+      id: string;
+    }[]
+  ) {
+    this.id = messages[0].id;
+    this.date = new Date(messages[0].createdAt);
+    this.messages = messages.map((msg) => new Message(msg));
   }
 }
