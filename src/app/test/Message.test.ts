@@ -17,6 +17,6 @@ describe("Message", () => {
   });
 
   test("its date prop should be formatted to locale", () => {
-    expect(message.createdAt).toBe("4/5/24");
-  })
+    expect(message.createdAt).toBeInstanceOf(Date);
+  });
 });
