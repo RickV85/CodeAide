@@ -41,7 +41,9 @@ export default function Conversations() {
     } else {
       return (
         <Box>
-          <Typography>No conversations to display</Typography>
+          <Typography marginTop="0.5rem" textAlign="center">
+            No conversations to display
+          </Typography>
         </Box>
       );
     }

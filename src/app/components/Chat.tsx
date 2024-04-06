@@ -25,6 +25,14 @@ export default function Chat() {
   const chatSubmitBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    // Create conversations in LS to story chat history
+    const history = window.localStorage.getItem("conversations");
+    if (!history) {
+      window.localStorage.setItem("conversations", "{}");
+    }
+  }, []);
+
+  useEffect(() => {
     // Keep activeChat updated with messages from API
     if (activeChat !== messages) {
       setActiveChat(messages);
@@ -32,13 +40,9 @@ export default function Chat() {
   }, [activeChat, messages, setActiveChat]);
 
   useEffect(() => {
-    // Create conversations in LS to story chat history
-    const history = window.localStorage.getItem("conversations");
-    if (!history) {
-      window.localStorage.setItem("conversations", "{}");
-    }
     // When activeChat updates with new messages,
     // create new object in LS conversations and update as new messages are created
+    const history = window.localStorage.getItem("conversations");
     if (activeChat?.length && history) {
       const conversations = JSON.parse(history);
       const activeId = activeChat[0]?.id;

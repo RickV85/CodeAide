@@ -55,7 +55,7 @@ export class Conversation {
 
   createIntro() {
     let introString = this.messages[0].content;
-    if (introString.length >= 80) {
+    if (introString?.length >= 80) {
       introString = introString.slice(0, 80);
       return introString + "...";
     } else {
