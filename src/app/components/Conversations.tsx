@@ -28,12 +28,14 @@ export default function Conversations() {
 
   const renderConversations = () => {
     const convElements = conversations.map((key: any) => {
-      return <Box key={`conv-${key}`}>
-        <Typography>{key}</Typography>
-      </Box>
-    })
+      return (
+        <Box key={`conv-${key}`}>
+          <Typography>{key}</Typography>
+        </Box>
+      );
+    });
     return convElements;
-  }
+  };
 
   return (
     <Box
