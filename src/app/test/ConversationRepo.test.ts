@@ -31,4 +31,9 @@ describe("ConversationRepo", () => {
     const foundConv = convRepo.findConvById("T4NKgvK");
     expect(foundConv).toEqual(convRepo.conversations[2]);
   });
+
+  test("it should return null if no conversation found with id", () => {
+    const foundConv = convRepo.findConvById("nonvalidid");
+    expect(foundConv).toEqual(null);
+  });
 });

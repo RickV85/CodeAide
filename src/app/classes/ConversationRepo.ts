@@ -28,4 +28,11 @@ export class ConversationRepo {
 
     return conversations;
   }
+
+  findConvById(id: string) {
+    const foundConv = this.conversations.find((conv) => conv.id === id);
+    if (foundConv) {
+      return foundConv;
+    }
+  }
 }
