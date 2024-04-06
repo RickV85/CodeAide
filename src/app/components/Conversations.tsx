@@ -30,8 +30,8 @@ export default function Conversations() {
     if (conversationRepo?.conversations.length) {
       const convElements = conversationRepo?.conversations.map((conv: Conversation) => {
         return (
-          <Box key={`conv-${conv.id}`}>
-            <Typography>{conv.messages[0].content}</Typography>
+          <Box key={`conv-${conv.id}`} marginTop="1rem">
+            <Typography>{conv.createIntro()}</Typography>
           </Box>
         );
       });
@@ -61,7 +61,7 @@ export default function Conversations() {
         Conversations
       </Typography>
       <Divider variant="middle" />
-      {renderConversations()}
+      {conversationRepo ? renderConversations() : null}
     </Box>
   );
 }

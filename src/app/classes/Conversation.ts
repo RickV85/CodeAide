@@ -54,7 +54,12 @@ export class Conversation {
   }
 
   createIntro() {
-    const introString = this.messages[0].content.slice(0, 50);
-    return introString + "...";
+    let introString = this.messages[0].content;
+    if (introString.length >= 50) {
+      introString = introString.slice(0, 50);
+      return introString + "...";
+    } else {
+      return introString;
+    }
   }
 }

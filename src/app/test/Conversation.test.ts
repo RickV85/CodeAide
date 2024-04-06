@@ -52,8 +52,11 @@ describe("Conversation", () => {
     expect(formattedDate).toBe("4/6/24");
   });
 
-  test("it should have a method to create a 50 char intro string of first message", () => {
+  test("it should have a method to create a max 50 char intro string of first message", () => {
     const intro = convo.createIntro();
     expect(intro).toBe("How would I construct a binary search in JavaScrip...");
+
+    const shortIntro = "What is a method?";
+    expect(shortIntro).toBe("What is a method?");
   });
 });
