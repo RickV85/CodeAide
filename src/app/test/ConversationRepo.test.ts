@@ -38,4 +38,13 @@ describe("ConversationRepo", () => {
     const foundConv = convRepo.findConvById("nonvalidid");
     expect(foundConv).toEqual(null);
   });
+
+  test("it should have a method to remove a conversation by id", () => {
+    const newRepo = convRepo.removeConvById("T4NKgvK");
+    const newRepoIds = newRepo.conversations.map(
+      (conv: Conversation) => conv.id
+    );
+
+    expect(newRepoIds.includes("T4NKgvK")).toBe(false);
+  });
 });
