@@ -28,13 +28,23 @@ export default function Conversations() {
 
   const renderConversations = () => {
     if (conversationRepo?.conversations.length) {
-      const convElements = conversationRepo?.conversations.map((conv: Conversation) => {
-        return (
-          <Box key={`conv-${conv.id}`} marginTop="1rem">
-            <Typography>{conv.createIntro()}</Typography>
-          </Box>
-        );
-      });
+      const convElements = conversationRepo?.conversations.map(
+        (conv: Conversation) => {
+          return (
+            <Box
+              key={`conv-${conv.id}`}
+              marginTop="1rem"
+              sx={{
+                border: `1px solid ${theme.palette.primary.light}`,
+                borderRadius: "4px",
+                padding: "0.5rem",
+              }}
+            >
+              <Typography>{conv.createIntro()}</Typography>
+            </Box>
+          );
+        }
+      );
       return convElements;
     } else {
       return (
