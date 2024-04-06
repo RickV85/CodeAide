@@ -1,19 +1,23 @@
 "use client";
 import { TextField, Box } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
-import { ChangeEvent } from "react";
+import { ChangeEvent, RefObject } from "react";
 
 interface Props {
   input: string;
   handleInputChange: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void;
+  chatSubmitBtnRef: RefObject<HTMLButtonElement>;
 }
 
-export default function ChatTextInput({ input, handleInputChange }: Props) {
-  const { userInputError, setUserInputError } =
-    useContext(AppContext);
+export default function ChatTextInput({
+  input,
+  handleInputChange,
+  chatSubmitBtnRef,
+}: Props) {
+  const { userInputError, setUserInputError } = useContext(AppContext);
 
   const handleInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,6 +30,13 @@ export default function ChatTextInput({ input, handleInputChange }: Props) {
       handleInputChange(e as ChangeEvent<HTMLInputElement>);
     } else if (e.target instanceof HTMLTextAreaElement) {
       handleInputChange(e as ChangeEvent<HTMLTextAreaElement>);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" && !e.shiftKey && chatSubmitBtnRef.current !== null) {
+      e.preventDefault();
+      chatSubmitBtnRef.current.click();
     }
   };
 
@@ -47,6 +58,7 @@ export default function ChatTextInput({ input, handleInputChange }: Props) {
         onChange={(e) => {
           handleInput(e);
         }}
+        onKeyDown={(e) => handleKeyDown(e)}
         error={userInputError ? true : false}
         label={userInputError ? userInputError : null}
       />

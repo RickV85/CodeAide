@@ -8,7 +8,7 @@ interface Props {
 export default function ChatResetButton({ setMessages }: Props) {
   return (
     <Button variant="contained" onClick={() => setMessages([])}>
-      Reset Chat
+      New Chat
     </Button>
   );
 }

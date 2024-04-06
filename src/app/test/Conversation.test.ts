@@ -57,8 +57,5 @@ describe("Conversation", () => {
     expect(intro).toBe(
       "How would I construct a binary search in JavaScript that has optimal space and t..."
     );
-
-    const shortIntro = "What is a method?";
-    expect(shortIntro).toBe("What is a method?");
   });
 });
