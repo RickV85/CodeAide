@@ -45,10 +45,12 @@ export default function Conversations() {
               key={`conv-${conv.id}`}
               marginTop="1rem"
               onClick={() => makeConvActive(conv.id)}
+              title="Click to make active conversation"
               sx={{
                 border: `1px solid ${theme.palette.primary.light}`,
                 borderRadius: "4px",
                 padding: "0.5rem",
+                cursor: "pointer",
               }}
             >
               <Typography>{conv.createIntro()}</Typography>
