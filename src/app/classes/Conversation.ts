@@ -7,7 +7,7 @@ export class Conversation {
   constructor(
     messages: {
       content: string;
-      role: string;
+      role: "assistant" | "user";
       createdAt: string;
       id: string;
     }[]
@@ -20,7 +20,7 @@ export class Conversation {
   initializeMessages(
     messages: {
       content: string;
-      role: string;
+      role: "assistant" | "user";
       createdAt: string;
       id: string;
     }[]

@@ -1,7 +1,9 @@
 import { describe } from "@jest/globals";
 import { ConversationRepo } from "../classes/ConversationRepo";
-import convHistory from "./testData/conversationHistory.json";
+import jsonTestData from "./testData/conversationHistory.json";
 import { Conversation } from "../classes/Conversation";
+import { ChatHistory } from "../classes/ConversationRepo";
+const convHistory: ChatHistory = jsonTestData as ChatHistory;
 
 describe("ConversationRepo", () => {
   let convRepo: any;

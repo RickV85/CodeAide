@@ -1,9 +1,9 @@
 import { Conversation } from "./Conversation";
 
-interface ChatHistory {
+export interface ChatHistory {
   [id: string]: {
     content: string;
-    role: string;
+    role: "assistant" | "user";
     createdAt: string;
     id: string;
   }[];

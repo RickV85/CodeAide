@@ -1,4 +1,9 @@
-export const unsortedConvData = [
+export const unsortedConvData: {
+  content: string;
+  role: "user" | "assistant";
+  createdAt: string;
+  id: string;
+}[] = [
   {
     id: "WlKEEwa",
     createdAt: "2024-04-06T14:55:34.063Z",

@@ -1,4 +1,9 @@
-export const testConvData = [
+export const testConvData: {
+  content: string;
+  role: "user" | "assistant";
+  createdAt: string;
+  id: string;
+}[] = [
   {
     content:
       "How would I construct a binary search in JavaScript that has optimal space and time complexity?",

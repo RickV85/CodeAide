@@ -6,7 +6,7 @@ import { ConversationRepo } from "../classes/ConversationRepo";
 import { Conversation } from "../classes/Conversation";
 
 export default function Conversations() {
-  const { activeChat } = useContext(AppContext);
+  const { activeChat, setActiveChat } = useContext(AppContext);
   const [conversationRepo, setConversationRepo] = useState<ConversationRepo>();
   const theme = useTheme();
 
@@ -26,9 +26,14 @@ export default function Conversations() {
     }
   }, [activeChat]);
 
-  // const makeConvActive = (id: string) => {
-    
-  // }
+  const makeConvActive = (id: string | null) => {
+    if (id && conversationRepo) {
+      const foundConv = conversationRepo.findConvById(id);
+      if (foundConv) {
+        setActiveChat(foundConv.messages)
+      }
+    }
+  }
 
   const renderConversations = () => {
     if (conversationRepo?.conversations.length) {
@@ -38,7 +43,7 @@ export default function Conversations() {
             <Box
               key={`conv-${conv.id}`}
               marginTop="1rem"
-              // onClick={() => makeConvActive(conv.id)}
+              onClick={() => makeConvActive(conv.id)}
               sx={{
                 border: `1px solid ${theme.palette.primary.light}`,
                 borderRadius: "4px",
