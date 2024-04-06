@@ -15,4 +15,8 @@ describe("Message", () => {
   test("it should create a Message instance", () => {
     expect(message).toBeInstanceOf(Message);
   });
+
+  test("its date prop should be formatted to locale", () => {
+    expect(message.createdAt).toBe("4/5/24");
+  })
 });

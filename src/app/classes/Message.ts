@@ -1,6 +1,6 @@
 export class Message {
   content: string;
-  createdAt: Date;
+  createdAt: string;
   id: string;
   role: string;
   constructor(object: {
@@ -10,7 +10,11 @@ export class Message {
     role: string;
   }) {
     this.content = object.content;
-    this.createdAt = new Date(object.createdAt);
+    this.createdAt = new Date(object.createdAt).toLocaleDateString("en-us", {
+      day: "numeric",
+      month: "numeric",
+      year: "2-digit",
+    });
     this.id = object.id;
     this.role = object.role;
   }
