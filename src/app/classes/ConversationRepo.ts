@@ -33,6 +33,8 @@ export class ConversationRepo {
     const foundConv = this.conversations.find((conv) => conv.id === id);
     if (foundConv) {
       return foundConv;
+    } else {
+      return null;
     }
   }
 }
