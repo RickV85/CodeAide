@@ -1,22 +1,23 @@
 import { Conversation } from "./Conversation";
 
+interface ConvHistory {
+  [id: string]: {
+    content: string;
+    role: string;
+    createdAt: string;
+    id: string;
+  }[];
+}
+
 export class ConversationRepo {
   conversations: Conversation[];
-  constructor(jsonData: string) {
-    this.conversations = this.initializeConversations(jsonData);
+  constructor(data: ConvHistory) {
+    this.conversations = this.initializeConversations(data);
   }
 
-  initializeConversations(json: string) {
-    const parsedConversations = JSON.parse(json).map(
-      (
-        conv: {
-          content: string;
-          role: string;
-          createdAt: string;
-          id: string;
-        }[]
-      ) => new Conversation(conv)
-    );
-    return parsedConversations;
+  initializeConversations(data: ConvHistory) {
+    const convKeys = Object.keys(data);
+    const conversations = convKeys.map((key) => new Conversation(data[key]));
+    return conversations;
   }
 }
