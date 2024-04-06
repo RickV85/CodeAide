@@ -16,4 +16,13 @@ export class Conversation {
     this.date = new Date(messages[0].createdAt);
     this.messages = messages.map((msg) => new Message(msg));
   }
+
+  formatCreatedDate() {
+    const formattedDate = this.date.toLocaleDateString("en-us", {
+      day: "numeric",
+      month: "numeric",
+      year: "2-digit",
+    });
+    return formattedDate;
+  }
 }

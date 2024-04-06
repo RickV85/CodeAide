@@ -18,4 +18,9 @@ describe("Conversation", () => {
       expect(msg).toBeInstanceOf(Message);
     });
   });
+
+  test("it should have a method to format date for display", () => {
+    const formattedDate = convo.formatCreatedDate();
+    expect(formattedDate).toBe("4/5/24");
+  })
 });
