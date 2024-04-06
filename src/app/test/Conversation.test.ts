@@ -54,7 +54,9 @@ describe("Conversation", () => {
 
   test("it should have a method to create a max 50 char intro string of first message", () => {
     const intro = convo.createIntro();
-    expect(intro).toBe("How would I construct a binary search in JavaScrip...");
+    expect(intro).toBe(
+      "How would I construct a binary search in JavaScript that has optimal space and t..."
+    );
 
     const shortIntro = "What is a method?";
     expect(shortIntro).toBe("What is a method?");
