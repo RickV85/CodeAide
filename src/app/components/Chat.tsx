@@ -9,39 +9,41 @@ import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { FormEvent } from "react";
 import ChatResetButton from "./ChatResetButton";
+import { ConversationRepo } from "../classes/ConversationRepo";
 
 export default function Chat() {
   const {
     // activeChat,
     // setActiveChat,
     setUserInputError,
+    conversationRepo,
+    setConversationRepo,
     messages,
     setMessages,
     input,
     handleInputChange,
     handleSubmit,
-    error,
   } = useContext(AppContext);
   const chatSubmitBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     // Create conversations in LS to story chat history
+    // or setConversationRepo with data on inital load
     const history = window.localStorage.getItem("conversations");
-    if (!history) {
+    if (history && !conversationRepo) {
+      const parsedHistory = JSON.parse(history);
+      const repoFromStorage = new ConversationRepo(parsedHistory);
+      setConversationRepo(repoFromStorage);
+    } else if (!history && !conversationRepo) {
       window.localStorage.setItem("conversations", "{}");
+      setConversationRepo(new ConversationRepo({}));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   // Keep activeChat updated with messages from API
-  //   if (activeChat !== messages) {
-  //     setActiveChat(messages);
-  //   }
-  // }, [activeChat, messages, setActiveChat]);
-
   useEffect(() => {
-    // When activeChat updates with new messages,
-    // create new object in LS conversations and update as new messages are created
+  // When messages updates with new messages, create new or add to existing object
+  // in LS conversations and update as new messages are created
     const history = window.localStorage.getItem("conversations");
     if (messages?.length && history) {
       const conversations = JSON.parse(history);

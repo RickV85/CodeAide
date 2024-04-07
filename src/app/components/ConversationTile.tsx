@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material";
 import { Conversation } from "../classes/Conversation";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
+import { ChatHistory } from "../classes/ConversationRepo";
 
 interface Props {
   conversation: Conversation;
@@ -25,6 +26,7 @@ export default function ConversationTile({ conversation }: Props) {
   };
 
   const deleteConversation = (id: string) => {
+    // Delete from conversationRepo
     if (id && conversationRepo) {
       setConversationRepo((prevState) => {
         const newState = prevState?.removeConvById(id);
@@ -32,6 +34,18 @@ export default function ConversationTile({ conversation }: Props) {
           return newState;
         }
       });
+      // Delete from LS
+      const history = window.localStorage.getItem("conversations");
+      if (history) {
+        const parsedHistory = JSON.parse(history);
+        if (Object.keys(parsedHistory).includes(id)) {
+          delete parsedHistory[id];
+          window.localStorage.setItem(
+            "conversations",
+            JSON.stringify(parsedHistory)
+          );
+        }
+      }
     }
   };
 

@@ -65,7 +65,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     handleInputChange,
     handleSubmit,
     error,
-  } = useChat();
+  } = useChat({
+    onFinish() {
+      // update convRepo from LS
+      const updatedHistory = window.localStorage.getItem("conversations");
+      if (updatedHistory) {
+        console.log("fired");
+        const updatedRepo = new ConversationRepo(JSON.parse(updatedHistory));
+        setConversationRepo(updatedRepo);
+      }
+    },
+  });
 
   return (
     <AppContext.Provider
