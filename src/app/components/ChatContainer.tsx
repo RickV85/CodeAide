@@ -1,10 +1,11 @@
 "use client";
 import { Box, Typography, useTheme, Divider } from "@mui/material";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../contexts/AppContext";
 
 export default function ChatContainer() {
   const { messages, error, activeChatId } = useContext(AppContext);
+  const containerRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
 
   useEffect(() => {
@@ -12,6 +13,13 @@ export default function ChatContainer() {
       console.error(error);
     }
   }, [error]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [messages]);
 
   const renderActiveChat = () => {
     if (messages.length) {
@@ -40,11 +48,12 @@ export default function ChatContainer() {
 
   return (
     <Box
+      ref={containerRef}
       sx={{
         height: "50vh",
         margin: "1rem",
         padding: "0.5rem",
-        overflowY: "auto",
+        overflowY: "scroll",
         backgroundColor: "background.paper",
         border: `1px solid ${theme.palette.divider}`,
         borderRadius: "4px",
