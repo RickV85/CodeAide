@@ -4,7 +4,6 @@ import ChatTextInput from "./ChatTextInput";
 import ChatSubmitButton from "./ChatSubmitButton";
 import { validateUserInput } from "../utils/utils";
 import { Grid } from "@mui/material";
-import { useChat } from "ai/react";
 import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { FormEvent } from "react";
@@ -13,8 +12,8 @@ import { ConversationRepo } from "../classes/ConversationRepo";
 
 export default function Chat() {
   const {
-    // activeChat,
-    // setActiveChat,
+    activeChatId,
+    setActiveChatId,
     setUserInputError,
     conversationRepo,
     setConversationRepo,
@@ -42,8 +41,8 @@ export default function Chat() {
   }, []);
 
   useEffect(() => {
-  // When messages updates with new messages, create new or add to existing object
-  // in LS conversations and update as new messages are created
+    // When messages updates with new messages, create new or add to existing object
+    // in LS conversations and update as new messages are created
     const history = window.localStorage.getItem("conversations");
     if (messages?.length && history) {
       const conversations = JSON.parse(history);
@@ -53,6 +52,9 @@ export default function Chat() {
         "conversations",
         JSON.stringify(conversations)
       );
+      if (activeId !== activeChatId) {
+        setActiveChatId(activeId);
+      }
     }
   }, [messages]);
 

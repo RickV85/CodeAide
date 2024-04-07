@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../contexts/AppContext";
 
 export default function ChatContainer() {
-  const { messages, error } = useContext(AppContext);
+  const { messages, error, activeChatId } = useContext(AppContext);
   const theme = useTheme();
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function ChatContainer() {
     >
       <Box>
         <Typography variant="h6" component={"h2"} textAlign="center">
-          {messages.length ? "CodeAide" : "Welcome to CodeAide!"}
+          {activeChatId ? "CodeAide" : "Welcome to CodeAide!"}
         </Typography>
         <Divider variant="middle" />
         {error ? (
@@ -61,7 +61,7 @@ export default function ChatContainer() {
           </Typography>
         ) : (
           <Box marginTop="1rem">
-            {messages.length ? (
+            {activeChatId ? (
               renderActiveChat()
             ) : (
               <Typography variant="body1" textAlign="center">

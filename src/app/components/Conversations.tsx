@@ -7,8 +7,13 @@ import { Conversation } from "../classes/Conversation";
 import ConversationTile from "./ConversationTile";
 
 export default function Conversations() {
-  const { setMessages, conversationRepo, setConversationRepo } =
-    useContext(AppContext);
+  const {
+    setMessages,
+    conversationRepo,
+    setConversationRepo,
+    activeChatId,
+    setActiveChatId,
+  } = useContext(AppContext);
   const [convDisplay, setConvDisplay] = useState<
     JSX.Element | JSX.Element[] | undefined
   >();
@@ -17,8 +22,7 @@ export default function Conversations() {
   const makeConvActive = (id: string | null) => {
     if (id && conversationRepo) {
       const foundConv = conversationRepo.findConvById(id);
-      if (foundConv) {
-        // setActiveChat(foundConv.messages);
+      if (foundConv && id !== activeChatId) {
         setMessages(foundConv.messages);
       }
     }
@@ -30,6 +34,12 @@ export default function Conversations() {
     if (history) {
       const parsedHistory = JSON.parse(history);
       if (id && conversationRepo && Object.keys(parsedHistory).includes(id)) {
+        // If deleting the active conversation, deactivate as activeChatId
+        // and setMessages to []
+        if (id === activeChatId) {
+          setActiveChatId("");
+          setMessages([]);
+        }
         const newRepo = new ConversationRepo(parsedHistory);
         newRepo?.removeConvById(id);
         setConversationRepo(newRepo);
