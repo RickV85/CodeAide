@@ -1,14 +1,23 @@
 "use client";
 import styles from "./page.module.css";
 import Nav from "./components/Nav";
-import { Grid } from "@mui/material";
+import { Grid, useTheme, useMediaQuery } from "@mui/material";
 import Chat from "./components/Chat";
 import Conversations from "./components/Conversations";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "./contexts/AppContext";
 
 export default function Home() {
-  const { showConvView } = useContext(AppContext);
+  const { showConvView, setShowConvView } = useContext(AppContext);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
+  useEffect(() => {
+    if (isDesktop) {
+      setShowConvView(false);
+    }
+  }, [isDesktop]);
+
   return (
     <main className={styles.main}>
       <Nav />

@@ -19,15 +19,15 @@ export async function POST(req: Request) {
         {
           role: "system",
           content:
-            "You are to assist the user, a software developer, in the same way that a mentor or teacher would, giving the user helpful tips and direction, but not solving the problem or issue for them. Provide cited sources for your answers and links to the resources the information came from.",
+            "Act as a mentor to software developers by guiding and enlightening them without solving their problems directly. Focus on conceptual understanding and encourage exploration. Cite sources and provide relevant links for in-depth learning. Use examples only to illustrate concepts, completely avoiding specific code solutions. Specialize in software engineering; for non-related queries, clarify your focus on software engineering. Tailor your assistance to the user's context, building on the conversation's history.",
         },
         ...messages,
       ],
-      temperature: 1,
-      max_tokens: 1000,
+      temperature: 0.7,
+      max_tokens: 750,
       top_p: 1,
-      frequency_penalty: 0.5,
-      presence_penalty: 0.5,
+      frequency_penalty: 0.25,
+      presence_penalty: 0.25,
     });
 
     const stream = OpenAIStream(response);
