@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { AppContext } from "../contexts/AppContext";
 
 export default function AccordionMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { showConvView, setShowConvView } = useContext(AppContext);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -38,8 +40,26 @@ export default function AccordionMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Chat</MenuItem>
-        <MenuItem onClick={handleClose}>Conversation History</MenuItem>
+        <MenuItem
+          onClick={() => {
+            if (showConvView === true) {
+              setShowConvView(false);
+            }
+            handleClose();
+          }}
+        >
+          Chat
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            if (showConvView === false) {
+              setShowConvView(true);
+            }
+            handleClose();
+          }}
+        >
+          Chat History
+        </MenuItem>
       </Menu>
     </div>
   );
