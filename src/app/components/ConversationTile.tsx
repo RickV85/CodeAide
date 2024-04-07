@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useTheme } from "@mui/material";
+import { useTheme, useMediaQuery } from "@mui/material";
 import { Conversation } from "../classes/Conversation";
 
 interface Props {
@@ -15,22 +15,34 @@ export default function ConversationTile({
   deleteConv,
 }: Props) {
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
+  const topBoxStyles = {
+    border: `1px solid ${theme.palette.primary.light}`,
+    borderRadius: "4px",
+    padding: "0.25rem",
+    display: "flex",
+    justifyContent: "space-between",
+    ...(isDesktop && {
+      "&:hover svg": {
+        opacity: 1,
+        transition: "opacity 0.25s ease-in-out",
+      },
+    }),
+  };
+
+  const closeBoxStyles = {
+    cursor: "pointer",
+    ...(isDesktop && {
+      "& svg": {
+        opacity: 0,
+        transition: "opacity 0.25s ease-in-out",
+      },
+    }),
+  };
 
   return (
-    <Box
-      marginTop="1rem"
-      sx={{
-        border: `1px solid ${theme.palette.primary.light}`,
-        borderRadius: "4px",
-        padding: "0.25rem",
-        display: "flex",
-        justifyContent: "space-between",
-        "&:hover svg": {
-          opacity: 1,
-          transition: "opacity 0.25s ease-in-out",
-        },
-      }}
-    >
+    <Box marginTop="1rem" sx={topBoxStyles}>
       <Box
         onClick={() => makeConvActive(conversation.id!)}
         title="Make active conversation"
@@ -43,13 +55,7 @@ export default function ConversationTile({
         <Box
           title="Delete conversation"
           onClick={() => deleteConv(conversation.id!)}
-          sx={{
-            cursor: "pointer",
-            "& svg": {
-              opacity: 0,
-              transition: "opacity 0.25s ease-in-out",
-            },
-          }}
+          sx={closeBoxStyles}
         >
           <CloseIcon />
         </Box>
