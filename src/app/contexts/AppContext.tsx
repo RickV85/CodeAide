@@ -5,8 +5,8 @@ import { ChatRequestOptions } from "ai";
 import { ConversationRepo } from "../classes/ConversationRepo";
 
 interface AppContext {
-  activeChat: Message[] | undefined;
-  setActiveChat: React.Dispatch<React.SetStateAction<Message[] | undefined>>;
+  activeChatId: string;
+  setActiveChatId: React.Dispatch<React.SetStateAction<string>>;
   userInputError: string;
   setUserInputError: React.Dispatch<React.SetStateAction<string>>;
   conversationRepo: ConversationRepo | undefined;
@@ -30,8 +30,8 @@ interface AppContext {
 }
 
 export const AppContext = createContext<AppContext>({
-  activeChat: undefined,
-  setActiveChat: () => {},
+  activeChatId: "",
+  setActiveChatId: () => {},
   userInputError: "",
   setUserInputError: () => {},
   conversationRepo: undefined,
@@ -50,9 +50,7 @@ interface AppProviderProps {
 }
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [activeChat, setActiveChat] = useState<Message[] | undefined>(
-    undefined
-  );
+  const [activeChatId, setActiveChatId] = useState<string>("");
   const [userInputError, setUserInputError] = useState("");
   const [conversationRepo, setConversationRepo] = useState<
     ConversationRepo | undefined
@@ -79,8 +77,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        activeChat,
-        setActiveChat,
+        activeChatId,
+        setActiveChatId,
         userInputError,
         setUserInputError,
         conversationRepo,
