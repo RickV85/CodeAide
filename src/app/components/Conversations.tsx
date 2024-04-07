@@ -1,5 +1,11 @@
 "use client";
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { ConversationRepo } from "../classes/ConversationRepo";
@@ -13,11 +19,13 @@ export default function Conversations() {
     setConversationRepo,
     activeChatId,
     setActiveChatId,
+    setShowConvView,
   } = useContext(AppContext);
   const [convDisplay, setConvDisplay] = useState<
     JSX.Element | JSX.Element[] | undefined
   >();
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const makeConvActive = (id: string | null) => {
     if (id && conversationRepo) {
@@ -25,6 +33,9 @@ export default function Conversations() {
       if (foundConv && id !== activeChatId) {
         setMessages(foundConv.messages);
         setActiveChatId(id);
+        if (isDesktop === false) {
+          setShowConvView(false);
+        }
       }
     }
   };
@@ -97,7 +108,7 @@ export default function Conversations() {
       }}
     >
       <Typography variant="h6" textAlign={"center"}>
-        Chat History
+        History
       </Typography>
       <Divider variant="middle" />
       {conversationRepo ? convDisplay : null}

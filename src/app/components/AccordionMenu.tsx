@@ -48,7 +48,7 @@ export default function AccordionMenu() {
             handleClose();
           }}
         >
-          Chat
+          CodeAide
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -58,7 +58,7 @@ export default function AccordionMenu() {
             handleClose();
           }}
         >
-          Chat History
+          History
         </MenuItem>
       </Menu>
     </div>
