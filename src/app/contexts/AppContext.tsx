@@ -13,6 +13,8 @@ interface AppContext {
   setConversationRepo: React.Dispatch<
     SetStateAction<ConversationRepo | undefined>
   >;
+  showConvView: boolean;
+  setShowConvView: React.Dispatch<React.SetStateAction<boolean>>;
   // OpenAI useChat
   messages: Message[];
   setMessages: (messages: Message[]) => void;
@@ -36,6 +38,8 @@ export const AppContext = createContext<AppContext>({
   setUserInputError: () => {},
   conversationRepo: undefined,
   setConversationRepo: () => {},
+  showConvView: false,
+  setShowConvView: () => {},
   // OpenAI useChat
   messages: [],
   setMessages: () => {},
@@ -55,6 +59,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [conversationRepo, setConversationRepo] = useState<
     ConversationRepo | undefined
   >();
+  const [showConvView, setShowConvView] = useState(false);
   // OpenAI useChat
   const {
     messages,
@@ -83,6 +88,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setUserInputError,
         conversationRepo,
         setConversationRepo,
+        showConvView,
+        setShowConvView,
         // OpenAI useChat
         messages,
         setMessages,
