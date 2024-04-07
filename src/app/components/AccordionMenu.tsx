@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useState } from "react";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppContext } from "../contexts/AppContext";
 
@@ -16,7 +16,7 @@ export default function AccordionMenu() {
   };
 
   return (
-    <div>
+    <Box>
       <IconButton
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -61,6 +61,6 @@ export default function AccordionMenu() {
           History
         </MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 }
