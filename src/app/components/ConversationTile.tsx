@@ -2,48 +2,19 @@ import { Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@mui/material";
 import { Conversation } from "../classes/Conversation";
-import { useContext } from "react";
-import { AppContext } from "../contexts/AppContext";
-import { ConversationRepo } from "../classes/ConversationRepo";
 
 interface Props {
   conversation: Conversation;
+  makeConvActive: (id: string | null) => void;
+  deleteConv: (id: string) => void;
 }
 
-export default function ConversationTile({ conversation }: Props) {
-  const { setActiveChat, setMessages, conversationRepo, setConversationRepo } =
-    useContext(AppContext);
+export default function ConversationTile({
+  conversation,
+  makeConvActive,
+  deleteConv,
+}: Props) {
   const theme = useTheme();
-
-  const makeConvActive = (id: string | null) => {
-    if (id && conversationRepo) {
-      const foundConv = conversationRepo.findConvById(id);
-      if (foundConv) {
-        setActiveChat(foundConv.messages);
-        setMessages(foundConv.messages);
-      }
-    }
-  };
-
-  const deleteConversation = (id: string) => {
-    const history = window.localStorage.getItem("conversations");
-    // Delete from conversationRep
-    if (history) {
-      const parsedHistory = JSON.parse(history);
-      if (id && conversationRepo && Object.keys(parsedHistory).includes(id)) {
-        const newRepo = new ConversationRepo(parsedHistory);
-        newRepo?.removeConvById(id);
-        setConversationRepo(newRepo);
-
-        // Delete from LS
-        delete parsedHistory[id];
-        window.localStorage.setItem(
-          "conversations",
-          JSON.stringify(parsedHistory)
-        );
-      }
-    }
-  };
 
   return (
     <Box
@@ -67,7 +38,7 @@ export default function ConversationTile({ conversation }: Props) {
       <Box sx={{ marginLeft: "0.5rem" }}>
         <Box
           title="Delete conversation"
-          onClick={() => deleteConversation(conversation.id!)}
+          onClick={() => deleteConv(conversation.id!)}
           sx={{ cursor: "pointer" }}
         >
           <CloseIcon />

@@ -7,22 +7,55 @@ import { Conversation } from "../classes/Conversation";
 import ConversationTile from "./ConversationTile";
 
 export default function Conversations() {
-  const { messages, conversationRepo, setConversationRepo } =
+  const { setMessages, conversationRepo, setConversationRepo } =
     useContext(AppContext);
   const [convDisplay, setConvDisplay] = useState<
     JSX.Element | JSX.Element[] | undefined
   >();
   const theme = useTheme();
 
+  const makeConvActive = (id: string | null) => {
+    if (id && conversationRepo) {
+      const foundConv = conversationRepo.findConvById(id);
+      if (foundConv) {
+        // setActiveChat(foundConv.messages);
+        setMessages(foundConv.messages);
+      }
+    }
+  };
+
+  const deleteConv = (id: string) => {
+    const history = window.localStorage.getItem("conversations");
+    // Delete from conversationRep
+    if (history) {
+      const parsedHistory = JSON.parse(history);
+      if (id && conversationRepo && Object.keys(parsedHistory).includes(id)) {
+        const newRepo = new ConversationRepo(parsedHistory);
+        newRepo?.removeConvById(id);
+        setConversationRepo(newRepo);
+
+        // Delete from LS
+        delete parsedHistory[id];
+        window.localStorage.setItem(
+          "conversations",
+          JSON.stringify(parsedHistory)
+        );
+      }
+    }
+  };
 
   useEffect(() => {
-    console.log("render")
     const renderConversations = () => {
       if (conversationRepo?.conversations?.length) {
         const convElements = conversationRepo?.conversations.map(
           (conv: Conversation) => {
             return (
-              <ConversationTile key={`conv-${conv.id}`} conversation={conv} />
+              <ConversationTile
+                key={`conv-${conv.id}`}
+                conversation={conv}
+                makeConvActive={makeConvActive}
+                deleteConv={deleteConv}
+              />
             );
           }
         );
@@ -38,7 +71,7 @@ export default function Conversations() {
       }
     };
     setConvDisplay(renderConversations());
-  }, [conversationRepo?.conversations]);
+  }, [conversationRepo]);
 
   return (
     <Box
