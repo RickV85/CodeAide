@@ -87,7 +87,7 @@ export default function Conversations() {
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "100%",
         margin: "1rem",
         padding: "0.5rem",
         overflowY: "auto",

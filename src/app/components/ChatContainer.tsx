@@ -36,7 +36,10 @@ export default function ChatContainer() {
             role = "";
         }
         return (
-          <Box key={`msg-${i}`} sx={{ marginBottom: "1rem" }}>
+          <Box
+            key={`msg-${i}`}
+            sx={{ marginBottom: "1rem", whiteSpace: "pre-line" }}
+          >
             <Typography fontWeight="700">{role}</Typography>
             <Typography>{msg.content}</Typography>
           </Box>
