@@ -27,12 +27,15 @@ export default function Conversations() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
+  // Fires when a ConversationTile is clicked to set as the
+  // activeChatId / shown conversation in ChatContainer
   const makeConvActive = (id: string | null) => {
     if (id && conversationRepo) {
       const foundConv = conversationRepo.findConvById(id);
       if (foundConv && id !== activeChatId) {
         setMessages(foundConv.messages);
         setActiveChatId(id);
+        // If mobile, switch to Chat view on selection of conversation
         if (isDesktop === false) {
           setShowConvView(false);
         }
@@ -40,9 +43,11 @@ export default function Conversations() {
     }
   };
 
+  // Fires when a ConversationTile's CloseIcon is clicked to
+  // delete the conversation from state and LS
   const deleteConv = (id: string) => {
     const history = window.localStorage.getItem("conversations");
-    // Delete from conversationRepo
+    // Delete conversation from conversationRepo
     if (history) {
       const parsedHistory = JSON.parse(history);
       if (id && conversationRepo && Object.keys(parsedHistory).includes(id)) {
@@ -66,6 +71,8 @@ export default function Conversations() {
     }
   };
 
+  // Render elements chat history in Conversations from conversationRepo
+  // and set component's convDisplay state
   useEffect(() => {
     const renderConversations = () => {
       if (conversationRepo?.conversations?.length) {

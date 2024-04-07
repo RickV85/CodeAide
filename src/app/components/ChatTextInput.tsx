@@ -22,10 +22,12 @@ export default function ChatTextInput({
   const handleInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    // If there is a user input error, reset status on input
     if (userInputError) {
       setUserInputError("");
     }
 
+    // Conditionals due to handleInputChange type definition options
     if (e.target instanceof HTMLInputElement) {
       handleInputChange(e as ChangeEvent<HTMLInputElement>);
     } else if (e.target instanceof HTMLTextAreaElement) {
@@ -33,6 +35,8 @@ export default function ChatTextInput({
     }
   };
 
+  // Submit user message on enter key down, but not if shift is held,
+  // by using ref on ChatSubmitButton
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" && !e.shiftKey && chatSubmitBtnRef.current !== null) {
       e.preventDefault();

@@ -8,12 +8,15 @@ export default function ChatContainer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
 
+  // Console log error from AI response
   useEffect(() => {
     if (error) {
       console.error(error);
     }
   }, [error]);
 
+  // Set scroll position to bottom of chat container as
+  // messages are updated and rendered
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
@@ -21,6 +24,7 @@ export default function ChatContainer() {
     }
   }, [messages]);
 
+  // Create display elements for message content
   const renderActiveChat = () => {
     if (messages.length) {
       const chatDisplay = messages.map((msg, i) => {

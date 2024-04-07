@@ -15,6 +15,7 @@ export default function ChatResetButton({
     <Button
       variant="contained"
       onClick={() => {
+        // Reset messages state activeChatId
         setMessages([]);
         setActiveChatId("");
       }}

@@ -4,9 +4,8 @@ import ChatTextInput from "./ChatTextInput";
 import ChatSubmitButton from "./ChatSubmitButton";
 import { validateUserInput } from "../utils/utils";
 import { Grid } from "@mui/material";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, FormEvent } from "react";
 import { AppContext } from "../contexts/AppContext";
-import { FormEvent } from "react";
 import ChatResetButton from "./ChatResetButton";
 import { ConversationRepo } from "../classes/ConversationRepo";
 
@@ -26,8 +25,8 @@ export default function Chat() {
   const chatSubmitBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    // Create conversations in LS to story chat history
-    // or setConversationRepo with data on inital load
+    // Create conversations in LS to store chat history
+    // or setConversationRepo with data on initial load
     const history = window.localStorage.getItem("conversations");
     if (history && !conversationRepo) {
       const parsedHistory = JSON.parse(history);
@@ -41,7 +40,7 @@ export default function Chat() {
   }, []);
 
   useEffect(() => {
-    // When messages updates with new messages, create new or add to existing object
+    // When messages state updates, create new or add to existing object
     // in LS conversations and update as new messages are created
     const history = window.localStorage.getItem("conversations");
     if (messages?.length && history) {
