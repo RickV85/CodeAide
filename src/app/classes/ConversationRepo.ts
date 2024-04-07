@@ -1,3 +1,4 @@
+import { Message } from "./Message";
 import { Conversation } from "./Conversation";
 
 export interface ChatHistory {
@@ -46,6 +47,14 @@ export class ConversationRepo {
   }
 
   createDataForStorage() {
-    return null;
+    const storageData: { [key: string]: object[] } = {};
+    this.conversations.forEach((conv: Conversation) => {
+      storageData[conv.id!] = conv.messages.map((msg: any) => {
+        const formattedMsg = structuredClone(msg);
+          formattedMsg.createdAt = formattedMsg.createdAt.toISOString();
+        return formattedMsg;
+      });
+    });
+    return storageData;
   }
 }
