@@ -1,8 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CodeAide
 
-## Getting Started
+## Overview
 
-First, run the development server:
+CodeAide is a virtual assistant for software developers that are looking for support in their coding, but do not want to receive answers to the problem that they are working through. CodeAide assists a developer by coaching them through the problem, providing helpful feedback and links to additional materials to learn more about the topic at hand. The idea came to me while working on challenging LeetCode problems to expand my abilities as an engineer. ChatGPT has the tendency to want to solve the problem for you, returning a code sample of how to solve it, and this is not productive to the learning experience I was looking for.
+
+## Tech
+
+This is a Next.js application using TypeScript, MaterialUI, ContextAPI, Jest and ChatGPT. I used Vercel's ai/react package that adds convenience functions for creating a chatbot with OpenAI's ChatGPT. Next.js's API functionality is used to create an endpoint that interacts with OpenAI's API and delivers an engineered system prompt and settings.
+
+## Features and usage
+
+### Chat
+
+The main function of the app is to provide a user, specifically a software developer, an easy to use chatbot that can assist them with code challenges and foster their learning experience as a teacher would. ChatGPT3.5 Turbo provides the user with lightning fast responses that will not produce a solution to the problem, only assistance with their issues and resources. The user can use the Submit button or the return/enter key to submit their input. The shift + return key will create new lines. They can create new conversations at any time with the "New Chat" button below Submit.
+
+### History
+
+The secondary feature of this app is it's History functionality that saves conversations in the browser's local storage. As soon as a conversation is started, it is saved to local storage. Then, it can be recalled anytime to review or continue a previous conversation. The conversations in History can also be deleted by clicking the "X" icon on the right side of the tile.
+
+### Mobile friendly
+
+This app was created with the mobile user in mind, although it is more likely to be used in a desktop setting considering its purpose. The mobile view features an accordion menu that allows a user to swap between the Chat and History views.
+
+## Set up instructions
+
+Clone the repo to your local machine
+
+Open the repo in an IDE
+
+Install dependencies with "npm i"
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +44,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
