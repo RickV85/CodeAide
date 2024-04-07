@@ -1,4 +1,3 @@
-import { Message } from "./Message";
 import { Conversation } from "./Conversation";
 
 export interface ChatHistory {

@@ -12,6 +12,7 @@ export default function Home() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
+  // If resizing window from mobile to desktop sizing, resets to default Chat view
   useEffect(() => {
     if (isDesktop) {
       setShowConvView(false);
