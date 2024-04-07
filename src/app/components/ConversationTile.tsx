@@ -25,6 +25,10 @@ export default function ConversationTile({
         padding: "0.25rem",
         display: "flex",
         justifyContent: "space-between",
+        "&:hover svg": {
+          opacity: 1,
+          transition: "opacity 0.25s ease-in-out",
+        },
       }}
     >
       <Box
@@ -39,7 +43,13 @@ export default function ConversationTile({
         <Box
           title="Delete conversation"
           onClick={() => deleteConv(conversation.id!)}
-          sx={{ cursor: "pointer" }}
+          sx={{
+            cursor: "pointer",
+            "& svg": {
+              opacity: 0,
+              transition: "opacity 0.25s ease-in-out",
+            },
+          }}
         >
           <CloseIcon />
         </Box>
