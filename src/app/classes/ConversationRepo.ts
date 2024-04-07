@@ -41,7 +41,7 @@ export class ConversationRepo {
 
   removeConvById(id: string) {
     const foundIndex = this.conversations.findIndex((conv) => conv.id === id);
-    if (foundIndex) {
+    if (foundIndex !== -1) {
       this.conversations.splice(foundIndex, 1);
     }
   }

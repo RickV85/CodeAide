@@ -67,10 +67,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     error,
   } = useChat({
     onFinish() {
-      // update convRepo from LS
+      // update convRepo from LS on finished transmission from AI
       const updatedHistory = window.localStorage.getItem("conversations");
       if (updatedHistory) {
-        console.log("fired");
         const updatedRepo = new ConversationRepo(JSON.parse(updatedHistory));
         setConversationRepo(updatedRepo);
       }
