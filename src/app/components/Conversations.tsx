@@ -9,6 +9,9 @@ import ConversationTile from "./ConversationTile";
 export default function Conversations() {
   const { activeChat, conversationRepo, setConversationRepo } =
     useContext(AppContext);
+  const [convDisplay, setConvDisplay] = useState<
+    JSX.Element | JSX.Element[] | undefined
+  >();
   const theme = useTheme();
 
   const getHistory = () => {
@@ -21,6 +24,16 @@ export default function Conversations() {
   };
 
   useEffect(() => {
+    // Update local storage when conversationRepo changes
+    if (!conversationRepo) return;
+    const storageData = conversationRepo?.createDataForStorage();
+    if (Object.keys(storageData).length) {
+      console.log(storageData)
+      window.localStorage.setItem("conversations", JSON.stringify(storageData));
+    }
+  }, [conversationRepo]);
+
+  useEffect(() => {
     const updatedConversations = getHistory();
     if (updatedConversations) {
       setConversationRepo(updatedConversations);
@@ -28,26 +41,29 @@ export default function Conversations() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeChat]);
 
-  const renderConversations = () => {
-    if (conversationRepo?.conversations.length) {
-      const convElements = conversationRepo?.conversations.map(
-        (conv: Conversation) => {
-          return (
-            <ConversationTile key={`conv-${conv.id}`} conversation={conv} />
-          );
-        }
-      );
-      return convElements;
-    } else {
-      return (
-        <Box>
-          <Typography marginTop="0.5rem" textAlign="center">
-            No conversations to display
-          </Typography>
-        </Box>
-      );
-    }
-  };
+  useEffect(() => {
+    const renderConversations = () => {
+      if (conversationRepo?.conversations.length) {
+        const convElements = conversationRepo?.conversations.map(
+          (conv: Conversation) => {
+            return (
+              <ConversationTile key={`conv-${conv.id}`} conversation={conv} />
+            );
+          }
+        );
+        return convElements;
+      } else {
+        return (
+          <Box>
+            <Typography marginTop="0.5rem" textAlign="center">
+              No conversations to display
+            </Typography>
+          </Box>
+        );
+      }
+    };
+    setConvDisplay(renderConversations());
+  }, [conversationRepo]);
 
   return (
     <Box
@@ -62,10 +78,10 @@ export default function Conversations() {
       }}
     >
       <Typography variant="h6" textAlign={"center"}>
-        Conversations
+        Chat History
       </Typography>
       <Divider variant="middle" />
-      {conversationRepo ? renderConversations() : null}
+      {conversationRepo ? convDisplay : null}
     </Box>
   );
 }

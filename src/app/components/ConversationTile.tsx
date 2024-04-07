@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ConversationTile({ conversation }: Props) {
-  const { setActiveChat, setMessages, conversationRepo } =
+  const { setActiveChat, setMessages, conversationRepo, setConversationRepo } =
     useContext(AppContext);
   const theme = useTheme();
 
@@ -26,9 +26,12 @@ export default function ConversationTile({ conversation }: Props) {
 
   const deleteConversation = (id: string) => {
     if (id && conversationRepo) {
-      conversationRepo.removeConvById(id);
-
-      // Add var with CovRepo method to turn back to JSON
+      setConversationRepo((prevState) => {
+        const newState = prevState?.removeConvById(id);
+        if (newState) {
+          return newState;
+        }
+      });
     }
   };
 

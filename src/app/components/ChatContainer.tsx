@@ -1,21 +1,17 @@
 "use client";
 import { Box, Typography, useTheme, Divider } from "@mui/material";
-import { Message } from "ai/react";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../contexts/AppContext";
 
-interface Props {
-  messages: Message[];
-  chatError: Error | undefined;
-}
-
-export default function ChatContainer({ messages, chatError }: Props) {
+export default function ChatContainer() {
+  const { messages, error } = useContext(AppContext);
   const theme = useTheme();
 
   useEffect(() => {
-    if (chatError) {
-      console.error(chatError);
+    if (error) {
+      console.error(error);
     }
-  }, [chatError]);
+  }, [error]);
 
   const renderActiveChat = () => {
     if (messages.length) {
@@ -56,13 +52,12 @@ export default function ChatContainer({ messages, chatError }: Props) {
     >
       <Box>
         <Typography variant="h6" component={"h2"} textAlign="center">
-          {messages.length ? "CodeAide Conversation" : "Welcome to CodeAide!"}
+          {messages.length ? "CodeAide" : "Welcome to CodeAide!"}
         </Typography>
         <Divider variant="middle" />
-        {chatError ? (
+        {error ? (
           <Typography marginTop="1rem">
-            An error occurred, please reload the page. Error:{" "}
-            {chatError.message}
+            An error occurred, please reload the page. Error: {error.message}
           </Typography>
         ) : (
           <Box marginTop="1rem">

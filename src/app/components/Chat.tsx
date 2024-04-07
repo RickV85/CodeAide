@@ -32,27 +32,27 @@ export default function Chat() {
     }
   }, []);
 
-  useEffect(() => {
-    // Keep activeChat updated with messages from API
-    if (activeChat !== messages) {
-      setActiveChat(messages);
-    }
-  }, [activeChat, messages, setActiveChat]);
+  // useEffect(() => {
+  //   // Keep activeChat updated with messages from API
+  //   if (activeChat !== messages) {
+  //     setActiveChat(messages);
+  //   }
+  // }, [activeChat, messages, setActiveChat]);
 
-  useEffect(() => {
-    // When activeChat updates with new messages,
-    // create new object in LS conversations and update as new messages are created
-    const history = window.localStorage.getItem("conversations");
-    if (activeChat?.length && history) {
-      const conversations = JSON.parse(history);
-      const activeId = activeChat[0]?.id;
-      conversations[activeId] = activeChat;
-      window.localStorage.setItem(
-        "conversations",
-        JSON.stringify(conversations)
-      );
-    }
-  }, [activeChat]);
+  // useEffect(() => {
+  //   // When activeChat updates with new messages,
+  //   // create new object in LS conversations and update as new messages are created
+  //   const history = window.localStorage.getItem("conversations");
+  //   if (activeChat?.length && history) {
+  //     const conversations = JSON.parse(history);
+  //     const activeId = activeChat[0]?.id;
+  //     conversations[activeId] = activeChat;
+  //     window.localStorage.setItem(
+  //       "conversations",
+  //       JSON.stringify(conversations)
+  //     );
+  //   }
+  // }, [activeChat]);
 
   const validateSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -81,7 +81,7 @@ export default function Chat() {
       spacing={0}
     >
       <Grid item xs={12} sx={{ width: "100%" }}>
-        <ChatContainer messages={messages} chatError={error} />
+        <ChatContainer />
       </Grid>
       <Grid item xs={12} sx={{ width: "100%" }}>
         <form onSubmit={(e) => validateSubmit(e)}>
