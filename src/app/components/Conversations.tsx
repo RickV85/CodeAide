@@ -31,7 +31,7 @@ export default function Conversations() {
 
   const deleteConv = (id: string) => {
     const history = window.localStorage.getItem("conversations");
-    // Delete from conversationRep
+    // Delete from conversationRepo
     if (history) {
       const parsedHistory = JSON.parse(history);
       if (id && conversationRepo && Object.keys(parsedHistory).includes(id)) {
@@ -82,7 +82,7 @@ export default function Conversations() {
       }
     };
     setConvDisplay(renderConversations());
-  }, [conversationRepo]);
+  }, [conversationRepo, activeChatId]);
 
   return (
     <Box

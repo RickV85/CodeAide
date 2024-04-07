@@ -107,7 +107,7 @@ export default function Chat() {
               <ChatSubmitButton chatSubmitBtnRef={chatSubmitBtnRef} />
             </Grid>
             <Grid item xs={12}>
-              <ChatResetButton setMessages={setMessages} />
+              <ChatResetButton setMessages={setMessages} setActiveChatId={setActiveChatId} />
             </Grid>
           </Grid>
         </form>
