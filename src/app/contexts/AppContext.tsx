@@ -9,14 +9,23 @@ interface AppContext {
   setActiveChat: React.Dispatch<React.SetStateAction<Message[] | undefined>>;
   userInputError: string;
   setUserInputError: React.Dispatch<React.SetStateAction<string>>;
-  conversationRepo: ConversationRepo | undefined,
-  setConversationRepo: React.Dispatch<SetStateAction<ConversationRepo | undefined>>,
+  conversationRepo: ConversationRepo | undefined;
+  setConversationRepo: React.Dispatch<
+    SetStateAction<ConversationRepo | undefined>
+  >;
   // OpenAI useChat
   messages: Message[];
   setMessages: (messages: Message[]) => void;
   input: string;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>, chatRequestOptions?: ChatRequestOptions | undefined) => void
+  handleInputChange: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement>,
+    chatRequestOptions?: ChatRequestOptions | undefined
+  ) => void;
   error: Error | undefined;
 }
 
@@ -45,7 +54,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     undefined
   );
   const [userInputError, setUserInputError] = useState("");
-  const [conversationRepo, setConversationRepo] = useState<ConversationRepo | undefined>();
+  const [conversationRepo, setConversationRepo] = useState<
+    ConversationRepo | undefined
+  >();
   // OpenAI useChat
   const {
     messages,

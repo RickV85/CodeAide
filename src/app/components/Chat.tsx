@@ -12,8 +12,8 @@ import ChatResetButton from "./ChatResetButton";
 
 export default function Chat() {
   const {
-    activeChat,
-    setActiveChat,
+    // activeChat,
+    // setActiveChat,
     setUserInputError,
     messages,
     setMessages,
@@ -39,20 +39,20 @@ export default function Chat() {
   //   }
   // }, [activeChat, messages, setActiveChat]);
 
-  // useEffect(() => {
-  //   // When activeChat updates with new messages,
-  //   // create new object in LS conversations and update as new messages are created
-  //   const history = window.localStorage.getItem("conversations");
-  //   if (activeChat?.length && history) {
-  //     const conversations = JSON.parse(history);
-  //     const activeId = activeChat[0]?.id;
-  //     conversations[activeId] = activeChat;
-  //     window.localStorage.setItem(
-  //       "conversations",
-  //       JSON.stringify(conversations)
-  //     );
-  //   }
-  // }, [activeChat]);
+  useEffect(() => {
+    // When activeChat updates with new messages,
+    // create new object in LS conversations and update as new messages are created
+    const history = window.localStorage.getItem("conversations");
+    if (messages?.length && history) {
+      const conversations = JSON.parse(history);
+      const activeId = messages[0]?.id;
+      conversations[activeId] = messages;
+      window.localStorage.setItem(
+        "conversations",
+        JSON.stringify(conversations)
+      );
+    }
+  }, [messages]);
 
   const validateSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
