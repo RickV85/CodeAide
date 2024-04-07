@@ -24,6 +24,7 @@ export default function Conversations() {
       const foundConv = conversationRepo.findConvById(id);
       if (foundConv && id !== activeChatId) {
         setMessages(foundConv.messages);
+        setActiveChatId(id);
       }
     }
   };
