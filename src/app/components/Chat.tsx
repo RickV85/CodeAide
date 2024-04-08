@@ -79,14 +79,15 @@ export default function Chat() {
     <Grid
       container
       direction="column"
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="center"
-      spacing={0}
+      spacing={2}
+      height={"100%"}
     >
-      <Grid item xs={12} sx={{ width: "100%" }}>
+      <Grid item xs={8} width={"100%"} height={"66%"}>
         <ChatContainer />
       </Grid>
-      <Grid item xs={12} sx={{ width: "100%" }}>
+      <Grid item xs={4} width={"100%"} height={"33%"}>
         <form onSubmit={(e) => validateSubmit(e)}>
           <Grid
             container
@@ -94,6 +95,7 @@ export default function Chat() {
             justifyContent="center"
             alignItems="center"
             spacing={0}
+            paddingBottom={"1rem"}
           >
             <Grid item xs={12} sx={{ width: "100%" }}>
               <ChatTextInput
@@ -106,7 +108,10 @@ export default function Chat() {
               <ChatSubmitButton chatSubmitBtnRef={chatSubmitBtnRef} />
             </Grid>
             <Grid item xs={12}>
-              <ChatResetButton setMessages={setMessages} setActiveChatId={setActiveChatId} />
+              <ChatResetButton
+                setMessages={setMessages}
+                setActiveChatId={setActiveChatId}
+              />
             </Grid>
           </Grid>
         </form>

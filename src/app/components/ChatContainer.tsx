@@ -57,7 +57,7 @@ export default function ChatContainer() {
     <Box
       ref={containerRef}
       sx={{
-        height: "60vh",
+        height: "100%",
         margin: "1rem",
         padding: "0.5rem",
         overflowY: "scroll",
@@ -82,9 +82,9 @@ export default function ChatContainer() {
               renderActiveChat()
             ) : (
               <Typography variant="body1" textAlign="center">
-                {`I'm specifically designed to assist you with coding challenges or
+                {`I'm here to assist you with coding challenges or
             questions like a mentor or teacher would. I'll provide you with
-            suggestions and guidance, but will not create a solution to the
+            guidance, suggestions and resources, but will not create a solution to the
             problem you are working on. Ask a question below!`}
               </Typography>
             )}
