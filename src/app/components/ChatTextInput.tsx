@@ -1,5 +1,5 @@
 "use client";
-import { TextField, Box } from "@mui/material";
+import { TextField, Box, useMediaQuery, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { ChangeEvent, RefObject } from "react";
@@ -18,6 +18,8 @@ export default function ChatTextInput({
   chatSubmitBtnRef,
 }: Props) {
   const { userInputError, setUserInputError } = useContext(AppContext);
+  const theme = useTheme();
+  const isMobileDisplay = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   const handleInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -54,6 +56,7 @@ export default function ChatTextInput({
         id="chatTextInput"
         name="chatTextInput"
         multiline
+        maxRows={isMobileDisplay ? 4 : 8}
         placeholder="Enter question or response here"
         variant="outlined"
         fullWidth

@@ -3,7 +3,7 @@ import ChatContainer from "./ChatContainer";
 import ChatTextInput from "./ChatTextInput";
 import ChatSubmitButton from "./ChatSubmitButton";
 import { validateUserInput } from "../utils/utils";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useContext, useEffect, useRef, FormEvent } from "react";
 import { AppContext } from "../contexts/AppContext";
 import ChatResetButton from "./ChatResetButton";
@@ -76,46 +76,55 @@ export default function Chat() {
   };
 
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="flex-start"
-      alignItems="center"
-      spacing={2}
-      height={"100%"}
+    <Box
+      sx={{
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+      }}
     >
-      <Grid item xs={8} width={"100%"} height={"66%"}>
+      <Box width={"100%"}>
         <ChatContainer />
-      </Grid>
-      <Grid item xs={4} width={"100%"} height={"33%"}>
+      </Box>
+      <Box width={"100%"}>
         <form onSubmit={(e) => validateSubmit(e)}>
-          <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={0}
-            paddingBottom={"1rem"}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <Grid item xs={12} sx={{ width: "100%" }}>
-              <ChatTextInput
-                input={input}
-                handleInputChange={handleInputChange}
-                chatSubmitBtnRef={chatSubmitBtnRef}
-              />
-            </Grid>
-            <Grid item xs={12} marginBottom="1rem">
-              <ChatSubmitButton chatSubmitBtnRef={chatSubmitBtnRef} />
-            </Grid>
-            <Grid item xs={12}>
-              <ChatResetButton
-                setMessages={setMessages}
-                setActiveChatId={setActiveChatId}
-              />
-            </Grid>
-          </Grid>
+            <Box
+              width={"100%"}
+              marginBottom={"1rem"}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Box sx={{ width: "100%" }}>
+                <ChatTextInput
+                  input={input}
+                  handleInputChange={handleInputChange}
+                  chatSubmitBtnRef={chatSubmitBtnRef}
+                />
+              </Box>
+              <Box marginBottom="1rem">
+                <ChatSubmitButton chatSubmitBtnRef={chatSubmitBtnRef} />
+              </Box>
+              <Box>
+                <ChatResetButton
+                  setMessages={setMessages}
+                  setActiveChatId={setActiveChatId}
+                />
+              </Box>
+            </Box>
+          </Box>
         </form>
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
 }
