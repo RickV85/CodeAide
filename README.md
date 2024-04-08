@@ -6,7 +6,7 @@ CodeAide is a virtual assistant for software developers that are looking for sup
 
 ## Tech
 
-This is a Next.js application using TypeScript, MaterialUI, ContextAPI, Jest and ChatGPT. I used Vercel's ai/react package that adds convenience functions for creating a chatbot with OpenAI's ChatGPT. Next.js's API functionality is used to create an endpoint that interacts with OpenAI's API and delivers an engineered system prompt and settings.
+This is a Next.js application using TypeScript, MaterialUI, ContextAPI, Jest and ChatGPT. I used Vercel's ai/react package that adds convenience functions for creating a chatbot with OpenAI's ChatGPT. Next.js's API functionality is used to create an endpoint that interacts with OpenAI's API and delivers an engineered system prompt and settings. Data structure created with classes and were tested with Jest.
 
 ## Features and usage
 
