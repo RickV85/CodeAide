@@ -42,7 +42,7 @@ export default function ChatContainer() {
         return (
           <Box
             key={`msg-${i}`}
-            sx={{ marginBottom: "1rem", whiteSpace: "pre-line" }}
+            sx={{ marginBottom: "1rem", whiteSpace: "pre-wrap" }}
           >
             <Typography fontWeight="700">{role}</Typography>
             <Typography>{msg.content}</Typography>
@@ -61,6 +61,7 @@ export default function ChatContainer() {
         margin: "1rem",
         padding: "0.5rem",
         overflowY: "scroll",
+        overflowX: "hidden",
         backgroundColor: "background.paper",
         border: `1px solid ${theme.palette.divider}`,
         borderRadius: "4px",

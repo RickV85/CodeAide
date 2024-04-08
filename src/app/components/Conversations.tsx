@@ -108,7 +108,7 @@ export default function Conversations() {
         height: "100%",
         margin: "1rem",
         padding: "0.5rem",
-        overflowY: "auto",
+        overflowY: "scroll",
         backgroundColor: "background.paper",
         border: `1px solid ${theme.palette.divider}`,
         borderRadius: "4px",
