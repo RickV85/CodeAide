@@ -57,7 +57,7 @@ export default function ChatContainer() {
     <Box
       ref={containerRef}
       sx={{
-        height: "50vh",
+        height: "60vh",
         margin: "1rem",
         padding: "0.5rem",
         overflowY: "scroll",

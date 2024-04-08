@@ -54,7 +54,6 @@ export default function ChatTextInput({
         id="chatTextInput"
         name="chatTextInput"
         multiline
-        rows={6}
         placeholder="Enter question or response here"
         variant="outlined"
         fullWidth

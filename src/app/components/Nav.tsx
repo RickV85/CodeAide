@@ -11,7 +11,7 @@ import AccordionMenu from "./AccordionMenu";
 
 export default function Nav() {
   const theme = useTheme();
-  const isMobileDisplay = useMediaQuery(theme.breakpoints.between("xs", "lg"));
+  const isMobileDisplay = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   return (
     <Box sx={{ flexGrow: 1 }}>

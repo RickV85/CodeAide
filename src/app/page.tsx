@@ -26,16 +26,16 @@ export default function Home() {
         <Grid
           item
           xs={showConvView ? 12 : false}
-          lg={4}
-          sx={{ display: { xs: showConvView ? "block" : "none", lg: "block" } }}
+          md={4}
+          sx={{ display: { xs: showConvView ? "block" : "none", md: "block" } }}
         >
           <Conversations />
         </Grid>
         <Grid
           item
           xs={showConvView ? false : 12}
-          lg={8}
-          sx={{ display: { xs: showConvView ? "none" : "block", lg: "block" } }}
+          md={8}
+          sx={{ display: { xs: showConvView ? "none" : "block", md: "block" } }}
         >
           <Chat />
         </Grid>
