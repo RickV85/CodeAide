@@ -8,13 +8,18 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import AccordionMenu from "./AccordionMenu";
+import { RefObject } from "react";
 
-export default function Nav() {
+interface Props {
+  navRef: RefObject<HTMLDivElement>;
+}
+
+export default function Nav({ navRef }: Props) {
   const theme = useTheme();
   const isMobileDisplay = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} ref={navRef}>
       <AppBar position="static">
         <Toolbar>
           {isMobileDisplay && <AccordionMenu />}
