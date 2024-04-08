@@ -7,9 +7,11 @@ describe("handleInput", () => {
     expect(validateUserInput(input)).toBe("Input cannot be empty");
   });
 
-  test("it should not allow inputs longer than 1000 chars", () => {
-    const tooLong = "a".repeat(1001);
+  test("it should not allow inputs longer than 2000 chars", () => {
+    const maxLength = "a".repeat(2000);
+    const tooLong = "a".repeat(2010);
 
-    expect(validateUserInput(tooLong)).toBe("Max character count exceeded");
+    expect(validateUserInput(maxLength)).toBe("valid");
+    expect(validateUserInput(tooLong)).toBe("Your response is 10 characters too long");
   });
 });
