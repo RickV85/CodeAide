@@ -20,7 +20,11 @@ The secondary feature of this app is it's History functionality that saves conve
 
 ### Mobile friendly
 
-This app was created with the mobile user in mind, although it is more likely to be used in a desktop setting considering its purpose. The mobile view features an accordion menu that allows a user to swap between the Chat and History views.
+This app was created with the mobile user in mind, although it is more likely to be used in a desktop setting considering its purpose. The mobile view features an accordion menu that allows a user to swap between the Chat and History views. The desktop view is similar to OpenAI's ChatGPT dashboard with conversation history displayed on the left hand side.
+
+### Dark mode
+
+
 
 ## Set up instructions
 

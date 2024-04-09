@@ -20,10 +20,18 @@ export default function Home() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
-  // Load sticky dark mode setting from LS
+  // Load dark mode setting from system and LS
   useEffect(() => {
+    const systemDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
     const stickyDarkMode = window.localStorage.getItem("useDarkMode");
-    if (stickyDarkMode === "true") {
+
+    // If user's system in dark mode preference and LS has not been
+    // set with useDarkMode, or has set dark mode, then useDarkMode
+    if (stickyDarkMode === null && systemDarkMode) {
+      setUseDarkMode(true);
+    } else if (stickyDarkMode === "true") {
       setUseDarkMode(true);
     }
   }, []);
