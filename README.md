@@ -2,17 +2,17 @@
 
 ## Overview
 
-CodeAide is a virtual assistant for software developers that are looking for support in their coding, but do not want to receive answers to the problem that they are working through. CodeAide assists a developer by coaching them through the problem, providing helpful feedback and links to additional materials to learn more about the topic at hand. The idea came to me while working on challenging LeetCode problems to expand my abilities as an engineer. ChatGPT has the tendency to want to solve the problem for you, returning a code sample of how to solve it, and this is not productive to the learning experience I was looking for.
+CodeAide is a virtual assistant for software developers that are looking for support in their coding, but do not want to receive answers to the problem that they are working through. CodeAide assists a developer by coaching them through the problem, providing helpful feedback and links to additional materials to learn more about the topic at hand. The idea came to me while working on challenging LeetCode problems. I had to create significant initial prompting to start the conversation as ChatGPT has the tendency to want to solve the problem for you, returning a code sample of how to solve it, and this is not productive to the learning experience I was looking for.
 
 ## Tech
 
-This is a Next.js application using TypeScript, MaterialUI, ContextAPI, Jest and ChatGPT. I used Vercel's ai/react package that adds convenience functions for creating a chatbot with OpenAI's ChatGPT. Next.js's API functionality is used to create an endpoint that interacts with OpenAI's API and delivers an engineered system prompt and settings. Data structure created with classes and were tested with Jest.
+This is a Next.js application using TypeScript, MaterialUI, ContextAPI, Jest and ChatGPT 3.5 Turbo API. I used Vercel's "ai/react" package that adds convenience functions for creating a chatbot with OpenAI. Next.js's API functionality is used to create an endpoint that interacts with ChatGPT and delivers an engineered system prompt and settings. Data structure and manipulation functions are created with classes and methods. Built using TDD through testing with Jest.
 
 ## Features and usage
 
 ### Chat
 
-The main function of the app is to provide a user, specifically a software developer, an easy to use chatbot that can assist them with code challenges and foster their learning experience as a teacher would. ChatGPT3.5 Turbo provides the user with lightning fast responses that will not produce a solution to the problem, only assistance with their issues and resources. The user can use the Submit button or the return/enter key to submit their input. The shift + return key will create new lines. They can create new conversations at any time with the "New Chat" button below Submit.
+The main function of the app is to provide a user, specifically a software developer, an easy to use chatbot that can assist them with code challenges and foster their learning experience as a teacher would. ChatGPT 3.5 Turbo provides the user with lightning fast responses that will not produce a solution to the problem, only assistance with their issues and resources. The user can use the Submit button or the return/enter key to submit their input. The shift + return key will create new lines. They can create new conversations at any time with the "New Chat" button below Submit.
 
 ### History
 
@@ -22,17 +22,17 @@ The secondary feature of this app is it's History functionality that saves conve
 
 This app was created with the mobile user in mind, although it is more likely to be used in a desktop setting considering its purpose. The mobile view features an accordion menu that allows a user to swap between the Chat and History views. The desktop view is similar to OpenAI's ChatGPT dashboard with conversation history displayed on the left hand side.
 
-### Dark mode
+### Sticky dark mode
 
-
+On a user's first visit, or a visit after local storage has been cleared, the app default's to the user's system preference of light or dark theming. After the first visit, the user's preference for a light or dark theme is retained through local storage. The theme is changed with a simple switch on the right side of the Nav bar.
 
 ## Set up instructions
 
-Clone the repo to your local machine
+Clone the repo to your local machine.
 
-Open the repo in an IDE
+Open the repo in an IDE.
 
-Install dependencies with "npm i"
+Install npm dependencies with "npm i".
 
 Run the development server:
 
