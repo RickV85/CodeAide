@@ -11,6 +11,7 @@ import {
 import AccordionMenu from "./AccordionMenu";
 import { RefObject } from "react";
 import Image from "next/image";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 interface Props {
   navRef: RefObject<HTMLDivElement>;
@@ -45,6 +46,7 @@ export default function Nav({ navRef }: Props) {
               />
             </Grid>
           </Grid>
+          <DarkModeSwitch />
         </Toolbar>
       </AppBar>
     </Box>
