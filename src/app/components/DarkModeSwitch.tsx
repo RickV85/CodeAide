@@ -1,10 +1,13 @@
-import { styled } from "@mui/material";
+"use client";
+import { styled, useTheme, useMediaQuery } from "@mui/material";
 import Switch from "@mui/material/Switch";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 
 export default function DarkModeSwitch() {
   const { useDarkMode, setUseDarkMode } = useContext(AppContext);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUseDarkMode(e.target.checked);
@@ -57,9 +60,14 @@ export default function DarkModeSwitch() {
       borderRadius: 20 / 2,
     },
   }));
+
   return (
     <MaterialUISwitch
-      sx={{ m: 1 }}
+      sx={{
+        m: 1,
+        marginRight: 0,
+        ...(isMobile && { transform: "scale(0.85)" }),
+      }}
       checked={useDarkMode}
       onChange={handleChange}
     />
