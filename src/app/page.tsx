@@ -14,10 +14,28 @@ import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "./contexts/AppContext";
 
 export default function Home() {
-  const { showConvView, setShowConvView, useDarkMode } = useContext(AppContext);
+  const { showConvView, setShowConvView, useDarkMode, setUseDarkMode } =
+    useContext(AppContext);
   const navRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+  // Load sticky dark mode setting from LS
+  useEffect(() => {
+    const stickyDarkMode = window.localStorage.getItem("useDarkMode");
+    if (stickyDarkMode === "true") {
+      setUseDarkMode(true);
+    }
+  }, []);
+
+  // Set LS useDarkMode preference on useDarkMode change
+  useEffect(() => {
+    if (useDarkMode) {
+      window.localStorage.setItem("useDarkMode", "true");
+    } else {
+      window.localStorage.setItem("useDarkMode", "false");
+    }
+  }, [useDarkMode]);
 
   // If resizing window from mobile to desktop sizing, resets to default Chat view
   useEffect(() => {
