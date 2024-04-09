@@ -15,6 +15,8 @@ interface AppContext {
   >;
   showConvView: boolean;
   setShowConvView: React.Dispatch<React.SetStateAction<boolean>>;
+  useDarkMode: boolean;
+  setUseDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
   // OpenAI useChat
   messages: Message[];
   setMessages: (messages: Message[]) => void;
@@ -40,6 +42,8 @@ export const AppContext = createContext<AppContext>({
   setConversationRepo: () => {},
   showConvView: false,
   setShowConvView: () => {},
+  useDarkMode: false,
+  setUseDarkMode: () => {},
   // OpenAI useChat
   messages: [],
   setMessages: () => {},
@@ -60,6 +64,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     ConversationRepo | undefined
   >();
   const [showConvView, setShowConvView] = useState(false);
+  const [useDarkMode, setUseDarkMode] = useState(false);
   // OpenAI useChat
   const {
     messages,
@@ -90,6 +95,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setConversationRepo,
         showConvView,
         setShowConvView,
+        useDarkMode,
+        setUseDarkMode,
         // OpenAI useChat
         messages,
         setMessages,
