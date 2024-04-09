@@ -9,14 +9,17 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import AccordionMenu from "./AccordionMenu";
-import { RefObject } from "react";
+import { RefObject, useContext } from "react";
 import Image from "next/image";
+import DarkModeSwitch from "./DarkModeSwitch";
+import { AppContext } from "../contexts/AppContext";
 
 interface Props {
   navRef: RefObject<HTMLDivElement>;
 }
 
 export default function Nav({ navRef }: Props) {
+  const { useDarkMode, setUseDarkMode } = useContext(AppContext);
   const theme = useTheme();
   const isMobileDisplay = useMediaQuery(theme.breakpoints.between("xs", "md"));
 
@@ -45,6 +48,7 @@ export default function Nav({ navRef }: Props) {
               />
             </Grid>
           </Grid>
+          <DarkModeSwitch />
         </Toolbar>
       </AppBar>
     </Box>
