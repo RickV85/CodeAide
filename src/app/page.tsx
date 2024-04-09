@@ -14,7 +14,7 @@ import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "./contexts/AppContext";
 
 export default function Home() {
-  const { showConvView, setShowConvView } = useContext(AppContext);
+  const { showConvView, setShowConvView, useDarkMode } = useContext(AppContext);
   const navRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -26,6 +26,12 @@ export default function Home() {
     }
   }, [isDesktop]);
 
+  const lightTheme = createTheme({
+    palette: {
+      mode: "light",
+    },
+  });
+
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -33,7 +39,7 @@ export default function Home() {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={useDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <main>
         <Nav navRef={navRef} />

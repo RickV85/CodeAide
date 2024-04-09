@@ -1,8 +1,14 @@
-import { styled, useTheme, FormGroup, FormControlLabel } from "@mui/material";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import { styled } from "@mui/material";
+import Switch from "@mui/material/Switch";
+import { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
 
 export default function DarkModeSwitch() {
-  const theme = useTheme();
+  const { useDarkMode, setUseDarkMode } = useContext(AppContext);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setUseDarkMode(e.target.checked);
+  };
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -51,5 +57,11 @@ export default function DarkModeSwitch() {
       borderRadius: 20 / 2,
     },
   }));
-  return <MaterialUISwitch sx={{ m: 1 }} defaultChecked />;
+  return (
+    <MaterialUISwitch
+      sx={{ m: 1 }}
+      checked={useDarkMode}
+      onChange={handleChange}
+    />
+  );
 }
