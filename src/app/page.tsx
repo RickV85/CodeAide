@@ -1,6 +1,13 @@
 "use client";
 import Nav from "./components/Nav";
-import { Grid, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Grid,
+  useTheme,
+  useMediaQuery,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 import Chat from "./components/Chat";
 import Conversations from "./components/Conversations";
 import { useContext, useEffect, useRef } from "react";
@@ -19,33 +26,46 @@ export default function Home() {
     }
   }, [isDesktop]);
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
-    <main>
-      <Nav navRef={navRef} />
-      <Grid
-        container
-        spacing={0}
-        minHeight={`calc(100vh - ${
-          navRef.current ? navRef.current.scrollHeight : "70"
-        }px)`}
-      >
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <main>
+        <Nav navRef={navRef} />
         <Grid
-          item
-          xs={showConvView ? 12 : false}
-          md={4}
-          sx={{ display: { xs: showConvView ? "block" : "none", md: "block" } }}
+          container
+          spacing={0}
+          minHeight={`calc(100vh - ${
+            navRef.current ? navRef.current.scrollHeight : "70"
+          }px)`}
         >
-          <Conversations />
+          <Grid
+            item
+            xs={showConvView ? 12 : false}
+            md={4}
+            sx={{
+              display: { xs: showConvView ? "block" : "none", md: "block" },
+            }}
+          >
+            <Conversations />
+          </Grid>
+          <Grid
+            item
+            xs={showConvView ? false : 12}
+            md={8}
+            sx={{
+              display: { xs: showConvView ? "none" : "block", md: "block" },
+            }}
+          >
+            <Chat />
+          </Grid>
         </Grid>
-        <Grid
-          item
-          xs={showConvView ? false : 12}
-          md={8}
-          sx={{ display: { xs: showConvView ? "none" : "block", md: "block" } }}
-        >
-          <Chat />
-        </Grid>
-      </Grid>
-    </main>
+      </main>
+    </ThemeProvider>
   );
 }
